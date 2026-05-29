@@ -52,4 +52,4 @@ A print-ready, 4-page A4 brochure for [agribeacon.tech](https://agribeacon.tech)
 - 📍 KĐT Geleximco, Hoài Đức, Hà Nội, Việt Nam
 
 ---
-© 2026 AgriBeacon. Private — internal use for AGRI VIETNAM 2026.
+© 2026 AgriBeacon — Precise Signals. Smarter Sensing. Sustainable Growth.
