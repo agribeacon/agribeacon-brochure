@@ -42,7 +42,7 @@ A print-ready, 4-page A4 brochure for [agribeacon.tech](https://agribeacon.tech)
 ## 🎨 Brand system (đồng bộ với agribeacon.tech)
 
 - **Xanh lá** `hsl(145 65% 42%)` · **Xanh dương** `hsl(200 85% 55%)` · **Vàng accent** `hsl(45 95% 60%)`
-- Font: **DM Sans**
+- Font: **Be Vietnam Pro** (tối ưu dấu tiếng Việt)
 - Tagline: *Precise Signals. Smarter Sensing. Sustainable Growth.*
 
 ## 📞 Liên hệ
