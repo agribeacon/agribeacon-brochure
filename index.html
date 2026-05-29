@@ -8,26 +8,29 @@
 <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
 <style>
-  /* ---------- Brand tokens (from agribeacon.tech) ---------- */
+  /* ===================== Brand tokens (agribeacon.tech) ===================== */
   :root{
-    --green:        hsl(145 65% 42%);
-    --green-deep:   hsl(145 70% 26%);
-    --green-ink:    hsl(145 55% 16%);
+    --green:        hsl(145 64% 43%);
+    --green-mid:    hsl(148 62% 35%);
+    --green-deep:   hsl(150 70% 25%);
+    --green-ink:    hsl(152 60% 13%);
+    --teal:         hsl(186 72% 46%);
     --blue:         hsl(200 85% 55%);
-    --blue-deep:    hsl(204 80% 38%);
+    --lime:         hsl(86 58% 60%);
     --gold:         hsl(45 95% 60%);
-    --lime:         #99CB63;
-    --ink:          hsl(140 30% 14%);
-    --muted:        hsl(140 14% 42%);
-    --line:         hsl(120 18% 88%);
-    --paper:        hsl(120 20% 98.5%);
+    --ink:          hsl(150 28% 12%);
+    --muted:        hsl(148 12% 42%);
+    --line:         hsl(140 18% 89%);
+    --paper:        hsl(120 24% 98.5%);
+    --paper-2:      hsl(140 26% 96.5%);
     --card:         #ffffff;
-    --hero:         linear-gradient(157deg, hsl(146 60% 46%) 0%, hsl(149 62% 36%) 52%, hsl(152 66% 26%) 100%);
-    --tech:         linear-gradient(180deg, hsl(146 58% 46%) 0%, hsl(152 66% 28%) 100%);
-    --shadow:       0 10px 34px -14px hsl(145 40% 20% / .28);
-    --shadow-sm:    0 4px 16px -6px hsl(145 40% 20% / .18);
+    --brand-grad:   linear-gradient(100deg, var(--green) 0%, var(--teal) 48%, var(--lime) 78%, var(--gold) 100%);
+    --hero-grad:    linear-gradient(155deg, hsl(146 60% 44%) 0%, hsl(150 64% 32%) 55%, hsl(154 68% 22%) 100%);
+    --shadow:       0 18px 44px -18px hsl(150 45% 16% / .34);
+    --shadow-sm:    0 8px 22px -10px hsl(150 45% 16% / .22);
+    --shadow-xs:    0 3px 12px -5px hsl(150 45% 16% / .16);
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
@@ -35,194 +38,224 @@
   body{
     font-family:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     color:var(--ink);
-    background:hsl(140 12% 20%);   /* screen backdrop only */
+    background:hsl(150 14% 18%);
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  /* ---------- A4 page frame ---------- */
+  /* ===================== A4 page frame ===================== */
   .page{
     position:relative;
     width:210mm; height:297mm;
     margin:14px auto;
     background:var(--paper);
     overflow:hidden;
-    box-shadow:0 18px 50px -12px rgba(0,0,0,.5);
+    box-shadow:0 24px 60px -16px rgba(0,0,0,.55);
   }
-  .pad{ padding:18mm 16mm; height:100%; display:flex; flex-direction:column; }
+  .pad{ padding:16mm 15mm 13mm; height:100%; display:flex; flex-direction:column; justify-content:space-between; }
 
-  /* ---------- Type ---------- */
-  .eyebrow{ font-size:10.5px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--green-deep); }
-  .eyebrow.on-dark{ color:hsl(145 80% 84%); }
-  h1{ font-size:40px; line-height:1.05; font-weight:700; letter-spacing:-.018em; }
-  h2{ font-size:26px; line-height:1.1;  font-weight:700; letter-spacing:-.015em; }
+  /* ===================== Shared type ===================== */
+  .eyebrow{ font-size:10.5px; font-weight:800; letter-spacing:.24em; text-transform:uppercase; color:var(--green-mid); }
+  h1{ font-weight:800; letter-spacing:-.022em; line-height:1.04; }
+  h2{ font-size:27px; line-height:1.08; font-weight:800; letter-spacing:-.02em; }
   h3{ font-size:15px; font-weight:700; letter-spacing:-.01em; }
   .lead{ font-size:13.5px; color:var(--muted); }
   .en{ font-style:italic; color:var(--muted); font-weight:400; }
-  .accent{ color:var(--green-deep); }
+  .accent{ color:var(--green-mid); }
 
-  /* ================= PAGE 1 — COVER ================= */
-  .cover{ background:var(--hero); color:#fff; }
-  .cover .pad{ padding:16mm 15mm 14mm; }
-  .cover .topbar{ display:flex; align-items:center; justify-content:space-between; }
-  .brand{ display:flex; align-items:center; gap:11px; }
-  .brand .mark{ width:46px; height:46px; background:#fff; border-radius:13px; display:grid; place-items:center; color:var(--green); box-shadow:0 6px 18px -6px rgba(0,0,0,.35); }
-  .brand .mark svg{ width:34px; height:34px; }
-  .brand .name{ font-size:23px; font-weight:700; letter-spacing:-.02em; }
-  .brand .name b{ font-weight:700; }
-  .web-pill{ font-size:12px; font-weight:600; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.32); padding:7px 14px; border-radius:999px; backdrop-filter:blur(2px); }
+  .rule{ height:4px; width:60px; background:var(--brand-grad); border-radius:4px; margin-top:13px; }
 
-  .cover-hero{ margin-top:auto; }
-  .tagline-top{ font-size:13px; font-weight:600; letter-spacing:.04em; color:hsl(145 90% 90%); margin-bottom:16px; }
-  .cover h1{ font-size:47px; max-width:11.5em; }
-  .cover h1 .light{ color:hsl(82 80% 78%); }
-  .cover .sub{ margin-top:14px; font-size:14.5px; line-height:1.5; color:rgba(255,255,255,.94); max-width:32em; }
-  .cover .sub .vn{ font-weight:600; color:#fff; }
-  .cover .sub .en{ display:block; margin-top:6px; font-size:12.5px; color:rgba(255,255,255,.7); }
+  /* logo mark helper */
+  .lm{ display:block; }
 
-  /* cover hero product visual */
-  .hero-visual{ margin-top:14px; border-radius:18px; overflow:hidden; height:188px; position:relative; box-shadow:0 18px 44px -18px rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.25); }
-  .hero-visual img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .hero-visual .hv-grad{ position:absolute; inset:0; background:linear-gradient(90deg, hsl(150 64% 30% / .55) 0%, transparent 42%); }
-  .hero-visual .hv-tags{ position:absolute; left:14px; bottom:12px; display:flex; gap:7px; }
-  .hv-tags .t{ font-size:10.5px; font-weight:700; color:#fff; background:rgba(20,60,40,.55); border:1px solid rgba(255,255,255,.32); padding:5px 11px; border-radius:999px; backdrop-filter:blur(3px); }
-
-  .chips{ display:flex; gap:9px; margin-top:22px; flex-wrap:wrap; }
-  .chip{ font-size:11.5px; font-weight:600; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); padding:7px 13px; border-radius:999px; display:inline-flex; align-items:center; gap:7px; }
-  .chip svg{ width:14px; height:14px; }
-
-  /* exhibition ribbon */
-  .expo{
-    margin-top:30px;
-    background:rgba(255,255,255,.97);
-    color:var(--ink);
-    border-radius:18px;
-    padding:18px 22px;
-    display:flex; align-items:center; gap:20px;
-    box-shadow:0 16px 40px -16px rgba(0,0,0,.45);
-  }
-  .expo .badge{
-    flex:none; text-align:center; color:#fff;
-    background:linear-gradient(135deg,var(--gold),hsl(35 92% 52%));
-    border-radius:14px; padding:12px 16px; min-width:96px;
-  }
-  .expo .badge .d{ font-size:30px; font-weight:700; line-height:1; }
-  .expo .badge .m{ font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; margin-top:3px; }
-  .expo .info .k{ font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--green-deep); }
-  .expo .info .t{ font-size:19px; font-weight:700; letter-spacing:-.01em; margin-top:2px; }
-  .expo .info .t span{ color:var(--green-deep); }
-  .expo .info .l{ font-size:12.5px; color:var(--muted); margin-top:3px; }
-  .expo .cta{ margin-left:auto; flex:none; text-align:right; }
-  .expo .cta .big{ font-size:13px; font-weight:700; color:var(--green-deep); }
-  .expo .cta .small{ font-size:11px; color:var(--muted); font-style:italic; }
-
-  .cover-foot{ margin-top:16px; display:flex; justify-content:space-between; align-items:center; font-size:11px; color:rgba(255,255,255,.8); }
-
-  /* decorative dots */
-  .dots{ position:absolute; inset:0; pointer-events:none; opacity:.5;
-    background-image:radial-gradient(rgba(255,255,255,.18) 1.3px, transparent 1.3px);
-    background-size:26px 26px; mask-image:linear-gradient(180deg,#000,transparent 55%); }
-
-  /* ================= SHARED CONTENT PAGES ================= */
+  /* page header (content pages) */
   .head-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
-  .mini-brand{ display:flex; align-items:center; gap:8px; color:var(--green-deep); }
-  .mini-brand .m{ width:26px;height:26px; color:var(--green); }
-  .mini-brand span{ font-size:13px; font-weight:700; letter-spacing:-.01em; color:var(--ink); }
-  .rule{ height:3px; width:54px; background:linear-gradient(90deg,var(--green),var(--blue)); border-radius:3px; margin:14px 0 0; }
+  .head-row h2{ margin-top:9px; }
+  .mini-brand{ display:flex; align-items:center; gap:8px; flex:none; }
+  .mini-brand .m{ width:27px;height:27px; color:var(--green); }
+  .mini-brand span{ font-size:13.5px; font-weight:800; letter-spacing:-.01em; color:var(--ink); }
+  .mini-brand b{ color:var(--green-mid); }
 
-  /* solution grid */
-  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-top:20px; }
-  .card{
-    background:var(--card); border:1px solid var(--line); border-radius:15px;
-    padding:16px 16px 15px; box-shadow:var(--shadow-sm);
-    display:flex; flex-direction:column; gap:8px;
-  }
-  .card .photo{ height:96px; border-radius:11px; overflow:hidden; background:hsl(120 14% 92%); margin:-2px 0 4px; position:relative; }
+  /* running footer */
+  .runfoot{ margin-top:0; padding-top:11px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center; font-size:10px; color:var(--muted); letter-spacing:.02em; }
+  .runfoot .pg{ font-weight:800; color:var(--green-mid); letter-spacing:.14em; }
+
+  /* ===================== PAGE 1 · COVER ===================== */
+  .cover{ background:var(--green-ink); }
+  .cover-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .cover-scrim{ position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, hsl(152 55% 8% / .62) 0%, hsl(152 50% 10% / .12) 22%, transparent 38%),
+      linear-gradient(180deg, transparent 40%, hsl(152 58% 9% / .55) 64%, hsl(153 62% 6% / .94) 100%); }
+  .cover-content{ position:relative; z-index:2; height:100%; display:flex; flex-direction:column;
+    padding:15mm 14mm 13mm; color:#fff; }
+
+  .cover-top{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand .mark{ width:48px; height:48px; background:#fff; border-radius:14px; display:grid; place-items:center;
+    color:var(--green); box-shadow:0 8px 22px -8px rgba(0,0,0,.5); }
+  .brand .mark svg{ width:36px; height:36px; }
+  .brand .name{ font-size:24px; font-weight:800; letter-spacing:-.022em; color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.35); }
+  .brand .name b{ font-weight:800; }
+  .web-pill{ font-size:12px; font-weight:700; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.4);
+    padding:8px 15px; border-radius:999px; color:#fff; backdrop-filter:blur(3px); }
+
+  .cover-bottom{ margin-top:auto; }
+  .cover-eyebrow{ font-size:11px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+    color:hsl(86 70% 80%); margin-bottom:14px; text-shadow:0 2px 10px rgba(0,0,0,.4); }
+  .cover-title{ font-size:56px; max-width:13.5em; text-shadow:0 4px 24px rgba(0,0,0,.42); }
+  .cover-title .grad{ color:hsl(86 72% 66%); }
+  .cover-sub{ margin-top:16px; font-size:15px; font-weight:500; line-height:1.5; max-width:32em;
+    color:rgba(255,255,255,.96); text-shadow:0 2px 12px rgba(0,0,0,.45); }
+  .cover-sub-en{ margin-top:5px; font-size:12.5px; font-style:italic; color:rgba(255,255,255,.74); max-width:34em; }
+
+  .cover-chips{ margin-top:18px; font-size:12px; font-weight:700; letter-spacing:.01em; color:rgba(255,255,255,.92);
+    display:flex; flex-wrap:wrap; gap:9px; }
+  .cover-chips span{ background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.34);
+    padding:6px 13px; border-radius:999px; backdrop-filter:blur(3px); }
+
+  .expo-ribbon{ margin-top:24px; background:rgba(255,255,255,.97); color:var(--ink); border-radius:18px;
+    padding:15px 20px; display:flex; align-items:center; gap:20px; box-shadow:0 22px 50px -18px rgba(0,0,0,.6); }
+  .expo-date{ flex:none; text-align:center; color:#fff; border-radius:14px; padding:10px 16px; min-width:92px;
+    background:linear-gradient(135deg,var(--gold),hsl(34 92% 50%)); box-shadow:0 8px 20px -8px hsl(38 90% 40% / .7); }
+  .expo-date .d{ font-size:30px; font-weight:900; line-height:1; letter-spacing:-.02em; }
+  .expo-date .m{ font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; margin-top:4px; line-height:1.25; }
+  .expo-mid{ flex:1; }
+  .expo-mid .k{ font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--green-mid); }
+  .expo-mid .t{ font-size:20px; font-weight:900; letter-spacing:-.01em; margin-top:2px; }
+  .expo-mid .t b{ color:var(--green-mid); }
+  .expo-mid .l{ font-size:12px; color:var(--muted); margin-top:3px; }
+  .expo-cta{ flex:none; text-align:right; font-size:12.5px; font-weight:800; color:var(--green-deep); line-height:1.5;
+    padding-left:18px; border-left:1px solid var(--line); }
+  .expo-cta span{ font-size:11px; font-weight:600; font-style:italic; color:var(--muted); }
+
+  /* ===================== PAGE 2 · SOLUTIONS ===================== */
+  .sheet-2{ background:var(--paper-2); }
+  .intro{ margin-top:14px; font-size:13.5px; color:var(--muted); max-width:50em; }
+  .intro b{ color:var(--ink); font-weight:700; }
+
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-top:16px; flex:1; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    box-shadow:var(--shadow-xs); display:flex; flex-direction:column; }
+  .card .photo{ height:118px; position:relative; background:hsl(140 14% 92%); overflow:hidden; }
   .card .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .card .ico{
-    position:absolute; left:9px; bottom:9px;
-    width:36px; height:36px; border-radius:10px; display:grid; place-items:center; color:#fff;
-    background:linear-gradient(135deg,var(--green),var(--green-deep)); box-shadow:0 4px 12px -3px rgba(0,0,0,.4);
-  }
-  .card.b2 .ico{ background:linear-gradient(135deg,hsl(95 52% 52%),var(--green)); }
-  .card.b3 .ico{ background:linear-gradient(135deg,var(--green),hsl(152 66% 24%)); }
-  .card .ico svg{ width:19px; height:19px; }
+  .card .photo::after{ content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 55%, hsl(152 55% 10% / .28) 100%); }
+  .card .ico{ position:absolute; left:12px; bottom:12px; z-index:2;
+    width:38px; height:38px; border-radius:11px; display:grid; place-items:center; color:#fff;
+    background:linear-gradient(135deg,var(--green),var(--green-deep)); box-shadow:0 6px 16px -4px rgba(0,0,0,.5); }
+  .card.b2 .ico{ background:linear-gradient(135deg,var(--teal),var(--green-mid)); }
+  .card.b3 .ico{ background:linear-gradient(135deg,var(--lime),var(--green)); }
+  .card .ico svg{ width:20px; height:20px; }
+  .card .num-badge{ position:absolute; right:12px; top:11px; z-index:2; font-size:11px; font-weight:900;
+    color:#fff; background:hsl(152 50% 10% / .42); border:1px solid rgba(255,255,255,.45);
+    width:24px; height:24px; border-radius:50%; display:grid; place-items:center; backdrop-filter:blur(3px); }
+  .card .body{ padding:13px 15px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .card h3{ display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; }
-  .card h3 .vn{ font-size:15px; }
-  .card .roman{ font-size:11px; font-weight:600; color:var(--green-deep); font-style:italic; }
-  .card p{ font-size:12px; color:var(--muted); line-height:1.45; }
-  .card .tag{ margin-top:auto; font-size:10.5px; font-weight:700; color:var(--green-deep); display:inline-flex; align-items:center; gap:5px; }
-  .card .tag svg{ width:12px; height:12px; }
+  .card h3 .vn{ font-size:15.5px; }
+  .card .roman{ font-size:11px; font-weight:600; color:var(--green-mid); font-style:italic; }
+  .card p{ font-size:12px; color:var(--muted); line-height:1.46; }
+  .card .tag{ margin-top:auto; padding-top:8px; font-size:10.5px; font-weight:800; color:var(--green-mid);
+    display:inline-flex; align-items:center; gap:6px; letter-spacing:.01em; }
+  .card .tag svg{ width:13px; height:13px; }
 
-  /* intro paragraph block */
-  .intro{ margin-top:16px; font-size:13.5px; color:var(--muted); max-width:46em; }
-  .intro b{ color:var(--ink); font-weight:600; }
+  /* ===================== PAGE 3 · HOW IT WORKS ===================== */
+  .pipeline{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; margin-top:18px; }
+  .step{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 15px 16px;
+    text-align:center; box-shadow:var(--shadow-xs); display:flex; flex-direction:column; align-items:center; }
+  .step .n{ width:38px;height:38px;border-radius:50%; margin-bottom:11px; display:grid;place-items:center;
+    color:#fff; font-weight:900; font-size:15px; background:linear-gradient(135deg,var(--green),var(--green-deep));
+    box-shadow:0 6px 16px -5px hsl(150 55% 25% / .6); }
+  .step h3{ font-size:15px; }
+  .step .roman{ font-size:10.5px; font-style:italic; color:var(--green-mid); font-weight:600; margin-top:1px; }
+  .step p{ font-size:11.5px; color:var(--muted); margin-top:8px; line-height:1.45; }
+  .arrow{ display:grid; place-items:center; color:var(--green); padding:0 8px; }
+  .arrow svg{ width:24px; height:24px; }
 
-  /* ===== PAGE 3 — pipeline + stats ===== */
-  .pipeline{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; gap:0; margin-top:22px; }
-  .step{ background:var(--card); border:1px solid var(--line); border-radius:15px; padding:16px 14px; text-align:center; box-shadow:var(--shadow-sm); }
-  .step .n{ width:34px;height:34px;border-radius:50%; margin:0 auto 9px; display:grid;place-items:center; color:#fff; font-weight:700; font-size:14px; background:linear-gradient(135deg,var(--green),var(--green-deep)); }
-  .step h3{ font-size:14px; }
-  .step .roman{ font-size:10px; font-style:italic; color:var(--green-deep); font-weight:600; }
-  .step p{ font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
-  .arrow{ display:grid; place-items:center; color:var(--green); padding:0 6px; }
-  .arrow svg{ width:22px; height:22px; }
+  .stats{ margin-top:18px; background:var(--green-ink); color:#fff; border-radius:18px; padding:24px 22px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+  .stats::before{ content:""; position:absolute; left:-50px; bottom:-60px; width:200px; height:200px; border-radius:50%;
+    background:radial-gradient(circle, hsl(186 72% 46% / .4), transparent 70%); }
+  .stats::after{ content:""; position:absolute; right:-40px; top:-50px; width:190px;height:190px; border-radius:50%;
+    background:radial-gradient(circle, hsl(145 65% 45% / .5), transparent 70%); }
+  .stat{ text-align:center; position:relative; z-index:1; padding:0 4px; }
+  .stat + .stat{ border-left:1px solid rgba(255,255,255,.14); }
+  .stat .num{ font-size:34px; font-weight:900; letter-spacing:-.03em; color:hsl(48 100% 78%); line-height:1; }
+  .stat .num.g{ color:hsl(86 70% 72%); }
+  .stat .lab{ font-size:10.5px; color:rgba(255,255,255,.82); margin-top:8px; line-height:1.35; }
 
-  .stats{ margin-top:24px; background:var(--green-ink); color:#fff; border-radius:18px; padding:22px 20px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
-  .stats::after{ content:""; position:absolute; right:-40px; top:-40px; width:180px;height:180px; border-radius:50%; background:radial-gradient(circle,hsl(145 65% 42% / .55),transparent 70%); }
-  .stat{ text-align:center; position:relative; z-index:1; }
-  .stat .num{ font-size:30px; font-weight:700; letter-spacing:-.02em; color:hsl(48 100% 80%); line-height:1; }
-  .stat .num.g{ color:hsl(145 80% 75%); }
-  .stat .lab{ font-size:10.5px; color:rgba(255,255,255,.8); margin-top:6px; line-height:1.3; }
+  .why-block{ margin-top:18px; }
+  .benefits{ margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:13px 22px; }
+  .ben{ display:flex; gap:12px; align-items:flex-start; }
+  .ben .bi{ flex:none; width:38px;height:38px;border-radius:11px; display:grid;place-items:center;
+    color:var(--green-deep); background:hsl(145 52% 91%); }
+  .ben .bi svg{ width:19px;height:19px; }
+  .ben h3{ font-size:13.5px; }
+  .ben p{ font-size:11.5px; color:var(--muted); line-height:1.45; margin-top:3px; }
 
-  .benefits{ margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:11px 22px; }
-  .ben{ display:flex; gap:11px; align-items:flex-start; }
-  .ben .bi{ flex:none; width:34px;height:34px;border-radius:10px; display:grid;place-items:center; color:var(--green-deep); background:hsl(145 55% 92%); }
-  .ben .bi svg{ width:18px;height:18px; }
-  .ben h3{ font-size:13px; }
-  .ben p{ font-size:11.5px; color:var(--muted); line-height:1.4; margin-top:2px; }
+  /* closing image band */
+  .closing{ margin-top:18px; border-radius:18px; overflow:hidden; position:relative; height:118px;
+    box-shadow:var(--shadow-sm); }
+  .closing img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .closing .cg{ position:absolute; inset:0;
+    background:linear-gradient(90deg, hsl(152 60% 9% / .92) 0%, hsl(152 58% 12% / .7) 42%, hsl(152 50% 14% / .15) 100%); }
+  .closing .ctxt{ position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:center;
+    padding:0 26px; color:#fff; max-width:62%; }
+  .closing .ctxt .k{ font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:hsl(86 70% 78%); }
+  .closing .ctxt .h{ font-size:19px; font-weight:800; letter-spacing:-.01em; margin-top:5px; line-height:1.18; }
+  .closing .ctxt .s{ font-size:11.5px; color:rgba(255,255,255,.82); margin-top:5px; }
 
-  /* ===== PAGE 4 — plans + contact ===== */
-  .plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px; }
-  .plan{ background:var(--card); border:1px solid var(--line); border-radius:15px; padding:16px 15px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; }
-  .plan.pop{ border:2px solid var(--green); box-shadow:var(--shadow); }
-  .plan .pname{ font-size:15px; font-weight:700; }
-  .plan .pop-tag{ font-size:9.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--green); padding:3px 9px; border-radius:999px; align-self:flex-start; margin-bottom:8px; }
-  .plan .pdesc{ font-size:11.5px; color:var(--muted); margin-top:5px; min-height:3.6em; line-height:1.4; }
-  .plan ul{ list-style:none; margin-top:11px; display:flex; flex-direction:column; gap:7px; }
-  .plan li{ font-size:11.5px; display:flex; gap:7px; align-items:flex-start; color:var(--ink); }
-  .plan li svg{ width:13px;height:13px; flex:none; margin-top:2px; color:var(--green); }
+  /* ===================== PAGE 4 · PLANS + CONTACT ===================== */
+  .plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-top:16px; align-items:stretch; }
+  .plan{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 16px 16px;
+    box-shadow:var(--shadow-xs); display:flex; flex-direction:column; position:relative; }
+  .plan.pop{ border:1.5px solid var(--green); box-shadow:var(--shadow); background:linear-gradient(180deg,hsl(145 50% 98.5%),#fff 38%); }
+  .plan .pop-tag{ position:absolute; top:-11px; left:16px; font-size:9.5px; font-weight:900; letter-spacing:.1em;
+    text-transform:uppercase; color:#fff; background:var(--brand-grad); padding:5px 12px; border-radius:999px;
+    box-shadow:0 6px 16px -6px hsl(150 55% 30% / .6); }
+  .plan .pname{ font-size:17px; font-weight:900; letter-spacing:-.01em; }
+  .plan .pdesc{ font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.42; min-height:3.4em; }
+  .plan .pdiv{ height:1px; background:var(--line); margin:13px 0 12px; }
+  .plan ul{ list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .plan li{ font-size:11.5px; display:flex; gap:8px; align-items:flex-start; color:var(--ink); line-height:1.35; }
+  .plan li svg{ width:16px;height:16px; flex:none; margin-top:.5px; color:var(--green); }
+  .plan .pfoot{ margin-top:auto; padding-top:14px; font-size:11px; font-weight:800; color:var(--green-mid);
+    display:flex; align-items:center; gap:6px; }
+  .plan .pfoot svg{ width:13px; height:13px; }
 
-  .why{ margin-top:22px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:13px; }
-  .why .w{ display:flex; gap:10px; align-items:flex-start; }
-  .why .wi{ flex:none; width:30px;height:30px;border-radius:9px; display:grid;place-items:center; color:#fff; background:linear-gradient(135deg,var(--green),var(--green-deep)); }
-  .why .wi svg{ width:16px;height:16px; }
-  .why h3{ font-size:12.5px; }
-  .why p{ font-size:11px; color:var(--muted); line-height:1.4; margin-top:2px; }
+  .why{ margin-top:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .why .w{ display:flex; gap:11px; align-items:flex-start; }
+  .why .wi{ flex:none; width:34px;height:34px;border-radius:10px; display:grid;place-items:center; color:#fff;
+    background:linear-gradient(135deg,var(--green),var(--green-deep)); box-shadow:var(--shadow-xs); }
+  .why .wi svg{ width:18px;height:18px; }
+  .why h3{ font-size:13px; }
+  .why p{ font-size:11px; color:var(--muted); line-height:1.42; margin-top:2px; }
 
-  .contact{
-    margin-top:auto; background:var(--hero); color:#fff; border-radius:20px; padding:22px 24px;
-    display:flex; align-items:center; gap:22px; box-shadow:var(--shadow); position:relative; overflow:hidden;
-  }
-  .contact .dots2{ position:absolute; inset:0; opacity:.4; background-image:radial-gradient(rgba(255,255,255,.2) 1.2px,transparent 1.2px); background-size:22px 22px; }
-  .contact .ctext{ position:relative; z-index:1; }
-  .contact .ctext .ceyebrow{ font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:hsl(48 100% 84%); }
-  .contact .ctext h2{ font-size:23px; margin-top:5px; }
-  .contact .ctext .csub{ font-size:12.5px; color:rgba(255,255,255,.9); margin-top:4px; }
-  .contact .rows{ margin-top:14px; display:flex; flex-direction:column; gap:9px; }
-  .crow{ display:flex; align-items:center; gap:11px; font-size:13px; }
-  .crow .ci{ width:30px;height:30px;border-radius:9px; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.3); display:grid;place-items:center; flex:none; }
-  .crow .ci svg{ width:15px;height:15px; }
-  .crow b{ font-weight:600; }
-  .qr{ position:relative; z-index:1; margin-left:auto; flex:none; text-align:center; }
-  .qr .box{ background:#fff; padding:11px; border-radius:14px; box-shadow:0 10px 26px -10px rgba(0,0,0,.5); }
-  .qr .box svg{ width:104px; height:104px; display:block; }
-  .qr .cap{ font-size:10px; color:rgba(255,255,255,.92); margin-top:8px; font-weight:600; }
+  .contact{ margin-top:18px; background:var(--hero-grad); color:#fff; border-radius:20px; padding:24px 26px;
+    display:flex; align-items:center; gap:24px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+  .contact .dots{ position:absolute; inset:0; opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.22) 1.2px,transparent 1.2px); background-size:22px 22px;
+    mask-image:linear-gradient(135deg,#000,transparent 70%); }
+  .contact .glow{ position:absolute; right:-60px; top:-70px; width:240px; height:240px; border-radius:50%;
+    background:radial-gradient(circle, hsl(86 65% 60% / .4), transparent 70%); }
+  .contact .ctext{ position:relative; z-index:1; flex:1; }
+  .contact .ceyebrow{ font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:hsl(48 100% 84%); }
+  .contact h2{ font-size:24px; margin-top:6px; }
+  .contact .csub{ font-size:12.5px; color:rgba(255,255,255,.9); margin-top:5px; }
+  .contact .rows{ margin-top:15px; display:flex; flex-direction:column; gap:10px; }
+  .crow{ display:flex; align-items:center; gap:12px; font-size:13.5px; }
+  .crow .ci{ width:32px;height:32px;border-radius:10px; background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35); display:grid;place-items:center; flex:none; }
+  .crow .ci svg{ width:16px;height:16px; }
+  .crow b{ font-weight:700; }
+  .qr{ position:relative; z-index:1; flex:none; text-align:center; }
+  .qr .box{ background:#fff; padding:12px; border-radius:16px; box-shadow:0 14px 30px -12px rgba(0,0,0,.55); }
+  .qr .box svg{ width:112px; height:112px; display:block; }
+  .qr .cap{ font-size:10.5px; color:rgba(255,255,255,.95); margin-top:9px; font-weight:700; line-height:1.4; }
 
-  .footer-line{ margin-top:13px; display:flex; justify-content:space-between; align-items:center; font-size:10.5px; color:var(--muted); }
-  .footer-line .booth{ font-weight:700; color:var(--green-deep); }
-
-  /* ---------- Print ---------- */
+  /* ===================== Print ===================== */
   @page{ size:A4; margin:0; }
   @media print{
     body{ background:#fff; }
@@ -236,126 +269,125 @@
 </head>
 <body>
 
-<div class="no-print">In brochure: mở file này trong Chrome → <b>Cmd/Ctrl + P</b> → chọn <b>Save as PDF</b>, khổ A4, lề None, bật “Background graphics”. (Bản PDF có sẵn trong <b>dist/agribeacon-brochure.pdf</b>.)</div>
+<div class="no-print">In brochure: mở file này trong Chrome → <b>Cmd/Ctrl + P</b> → <b>Save as PDF</b>, khổ A4, lề None, bật “Background graphics”. (Bản có sẵn: <b>dist/agribeacon-brochure.pdf</b>.)</div>
 
 <!-- ===================== PAGE 1 · COVER ===================== -->
 <section class="page cover">
-  <div class="dots"></div>
-  <div class="pad">
-    <div class="topbar">
+  <img class="cover-bg" src="assets/products/ai-assistant.jpg" alt="Nông dân dùng trợ lý AI AgriBeacon ngoài đồng lúc bình minh">
+  <div class="cover-scrim"></div>
+  <div class="cover-content">
+    <header class="cover-top">
       <div class="brand">
         <span class="mark"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z M357.3,298.9H337v-8.2c0-5.6,4.5-10.1,10.1-10.1c5.6,0,10.1,4.5,10.1,10.1c0,0,0,0,0,0V298.9z M382,270.3h-69.6c-0.5,0-0.8-0.4-0.8-0.8c0-0.3,0.2-0.6,0.4-0.7l35.2-21.2l35.2,21.2c0.4,0.2,0.5,0.7,0.3,1.1C382.5,270.1,382.3,270.3,382,270.3L382,270.3z"/></svg></span>
         <span class="name">Agri<b>Beacon</b></span>
       </div>
       <span class="web-pill">agribeacon.tech</span>
-    </div>
+    </header>
 
-    <div class="hero-visual">
-      <img src="assets/products/spraying-robot.png" alt="AgriBeacon autonomous spraying robot working in an orchard">
-      <div class="hv-grad"></div>
-      <div class="hv-tags">
-        <span class="t">Robot phun thuốc tự hành</span>
-        <span class="t">Tiết kiệm 60% hóa chất</span>
-      </div>
-    </div>
+    <div class="cover-bottom">
+      <div class="cover-eyebrow">Precise Signals · Smarter Sensing · Sustainable Growth</div>
+      <h1 class="cover-title">Kiến tạo tương lai<br>cho nền <span class="grad">nông nghiệp</span></h1>
+      <p class="cover-sub">Giải pháp công nghệ nông nghiệp toàn diện cho trang trại cây lâu năm — tối ưu mọi quyết định, từ đất đến mùa thu hoạch.</p>
+      <p class="cover-sub-en">End-to-end agricultural technology for perennial-plant farms — optimizing every decision from soil to harvest.</p>
 
-    <div class="cover-hero">
-      <div class="tagline-top">Precise Signals · Smarter Sensing · Sustainable Growth</div>
-      <h1>Kiến tạo <span class="light">Tương lai</span><br>cho Nền Nông nghiệp</h1>
-      <p class="sub"><span class="vn">Giải pháp công nghệ nông nghiệp toàn diện cho các trang trại cây lâu năm.</span> Tối ưu mọi quyết định — từ đất đến mùa thu hoạch.<span class="en">Build the Future of Agriculture — end-to-end ag-tech for perennial plant farms, optimizing every decision from soil to harvest.</span></p>
-
-      <div class="chips">
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M5 8l3 2M19 8l-3 2M12 12l-6 4 6 4 6-4-6-4z"/></svg>Drone tự hành</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V5h6v3M9 19v2M15 19v2"/></svg>Robot phun thuốc</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Cảm biến IoT</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a4 4 0 0 1 4 4c1.5.8 2 2 2 3.5a4 4 0 0 1-1 2.5 3.5 3.5 0 0 1-5 4 3.5 3.5 0 0 1-5-4 4 4 0 0 1-1-2.5C6 9 6.5 7.8 8 7a4 4 0 0 1 4-4z"/></svg>Trợ lý AI</span>
+      <div class="cover-chips">
+        <span>Drone tự hành</span>
+        <span>Robot phun thuốc</span>
+        <span>Cảm biến IoT</span>
+        <span>Trợ lý AI “Thần Nông”</span>
+        <span>Nền tảng quản lý</span>
       </div>
 
-      <div class="expo">
-        <div class="badge">
+      <div class="expo-ribbon">
+        <div class="expo-date">
           <div class="d">10–12</div>
-          <div class="m">June 2026</div>
+          <div class="m">Tháng 6<br>2026</div>
         </div>
-        <div class="info">
+        <div class="expo-mid">
           <div class="k">Gặp chúng tôi tại</div>
-          <div class="t">AGRI VIETNAM <span>2026</span></div>
+          <div class="t">AGRI VIETNAM <b>2026</b></div>
           <div class="l">Triển lãm Quốc tế lần thứ 6 · SECC, TP. Hồ Chí Minh</div>
         </div>
-        <div class="cta">
-          <div class="big">Ghé thăm gian hàng</div>
-          <div class="small">Visit our booth</div>
-        </div>
-      </div>
-
-      <div class="cover-foot">
-        <span>Máy móc · Trang thiết bị · Vật tư &amp; Sản phẩm Nông nghiệp thông minh</span>
-        <span>☎ +84 339 280 135</span>
+        <div class="expo-cta">Ghé thăm<br>gian hàng<br><span>Visit our booth →</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===================== PAGE 2 · SOLUTIONS ===================== -->
-<section class="page">
+<section class="page sheet-2">
   <div class="pad">
     <div class="head-row">
       <div>
         <div class="eyebrow">Hệ sinh thái giải pháp · Complete Ecosystem</div>
-        <h2 style="margin-top:8px">Phần cứng tiên tiến &amp; phần mềm thông minh<br><span class="accent">vận hành hài hòa trên một nền tảng duy nhất</span></h2>
+        <h2>Phần cứng tiên tiến &amp; phần mềm thông minh<br><span class="accent">hài hòa trên một nền tảng duy nhất</span></h2>
         <div class="rule"></div>
       </div>
       <div class="mini-brand">
         <span class="m"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z"/></svg></span>
-        <span>AgriBeacon</span>
+        <span>Agri<b>Beacon</b></span>
       </div>
     </div>
 
-    <p class="intro">Toàn bộ dữ liệu thu thập từ drone, robot và cảm biến được <b>AI xử lý và biến thành hành động cụ thể</b> — từ giám sát sức khỏe cây trồng, dự báo năng suất đến tự động hóa lịch chăm sóc. Một hệ sinh thái khép kín cho người nông dân hiện đại.</p>
+    <p class="intro">Toàn bộ dữ liệu từ drone, robot và cảm biến được <b>AI xử lý và biến thành hành động cụ thể</b> — từ giám sát sức khỏe cây trồng, dự báo năng suất đến tự động hóa lịch chăm sóc. Một hệ sinh thái khép kín cho người nông dân hiện đại.</p>
 
     <div class="grid">
-      <!-- 1 Drones -->
       <div class="card">
-        <div class="photo"><img src="assets/products/drone.png" alt="AgriBeacon precision RTK agricultural drone"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><rect x="9" y="9.5" width="6" height="5" rx="1.2"/><path d="M6.6 7.6 9 9.8M17.4 7.6 15 9.8M6.6 16.4 9 14.2M17.4 16.4 15 14.2"/></svg></div></div>
-        <h3><span class="vn">Drone Tự hành</span> <span class="roman">Autonomous Drones</span></h3>
-        <p>Drone RTK độ chính xác cao quét toàn trang trại, chấm điểm sức khỏe cây trồng và phát hiện sâu bệnh sớm bằng camera AI.</p>
-        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Quét &amp; giám sát trên không 4K</span>
+        <div class="photo"><img src="assets/products/drone.png" alt="Drone nông nghiệp RTK AgriBeacon"><span class="num-badge">1</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><rect x="9" y="9.5" width="6" height="5" rx="1.2"/><path d="M6.6 7.6 9 9.8M17.4 7.6 15 9.8M6.6 16.4 9 14.2M17.4 16.4 15 14.2"/></svg></div></div>
+        <div class="body">
+          <h3><span class="vn">Drone Tự hành</span> <span class="roman">Autonomous Drones</span></h3>
+          <p>Drone RTK độ chính xác cao quét toàn trang trại, chấm điểm sức khỏe cây trồng và phát hiện sâu bệnh sớm bằng camera AI.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Quét &amp; giám sát trên không 4K</span>
+        </div>
       </div>
-      <!-- 2 Robots -->
+
       <div class="card b2">
-        <div class="photo"><img src="assets/products/spraying-robot.png" alt="AgriBeacon autonomous spraying robot"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="8" width="16" height="10" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="13" r="1.3"/><circle cx="15" cy="13" r="1.3"/><path d="M7 18v2M17 18v2"/></svg></div></div>
-        <h3><span class="vn">Robot Nông nghiệp</span> <span class="roman">Spraying Robots</span></h3>
-        <p>Robot phun thuốc tự hành với điều khiển từ xa, vòi phun điều chỉnh theo từng loại cây — phun chính xác bằng AI.</p>
-        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Tiết kiệm đến 60% hóa chất</span>
+        <div class="photo"><img src="assets/products/spraying-robot.png" alt="Robot phun thuốc tự hành AgriBeacon"><span class="num-badge">2</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="8" width="16" height="10" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="13" r="1.3"/><circle cx="15" cy="13" r="1.3"/><path d="M7 18v2M17 18v2"/></svg></div></div>
+        <div class="body">
+          <h3><span class="vn">Robot Nông nghiệp</span> <span class="roman">Spraying Robots</span></h3>
+          <p>Robot phun thuốc tự hành điều khiển từ xa, vòi phun điều chỉnh theo từng loại cây — phun chính xác bằng AI.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Tiết kiệm đến 60% hóa chất</span>
+        </div>
       </div>
-      <!-- 3 IoT -->
+
       <div class="card b3">
-        <div class="photo"><img src="assets/products/iot-sensor.png" alt="AgriBeacon IoT soil and environment sensor"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="2.4"/><path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21M6 6l2.4 2.4M18 6l-2.4 2.4M6 18l2.4-2.4M18 18l-2.4-2.4"/></svg></div></div>
-        <h3><span class="vn">Mạng Cảm biến IoT</span> <span class="roman">IoT Sensor Networks</span></h3>
-        <p>Đo 8+ thông số theo thời gian thực: độ ẩm đất, chất lượng không khí, CO₂, nguồn nước — đồng bộ tức thì lên cloud.</p>
-        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Dữ liệu thời gian thực 24/7</span>
+        <div class="photo"><img src="assets/products/iot-sensor.png" alt="Cảm biến IoT đất &amp; môi trường AgriBeacon"><span class="num-badge">3</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="2.4"/><path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21M6 6l2.4 2.4M18 6l-2.4 2.4M6 18l2.4-2.4M18 18l-2.4-2.4"/></svg></div></div>
+        <div class="body">
+          <h3><span class="vn">Mạng Cảm biến IoT</span> <span class="roman">IoT Sensor Networks</span></h3>
+          <p>Đo 8+ thông số theo thời gian thực: độ ẩm đất, chất lượng không khí, CO₂, nguồn nước — đồng bộ tức thì lên cloud.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Dữ liệu thời gian thực 24/7</span>
+        </div>
       </div>
-      <!-- 4 AI Assistant -->
+
       <div class="card">
-        <div class="photo"><img src="assets/products/ai-assistant.jpg" alt="Farmer using AgriBeacon Thần Nông AI assistant in the field"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3a4 4 0 0 1 4 4c1.5.8 2 2 2 3.5a4 4 0 0 1-1 2.6 3.5 3.5 0 0 1-5 3.9 3.5 3.5 0 0 1-5-3.9 4 4 0 0 1-1-2.6C6 9 6.5 7.8 8 7a4 4 0 0 1 4-4z"/><path d="M12 7v10"/></svg></div></div>
-        <h3><span class="vn">Trợ lý AI “Thần Nông”</span> <span class="roman">AI Assistant</span></h3>
-        <p>Hỏi–đáp ngôn ngữ tự nhiên (Việt · Anh · Nhật): chẩn đoán sâu bệnh, gợi ý lịch bón phân và kế hoạch canh tác.</p>
-        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Đa ngôn ngữ · huấn luyện theo nông học</span>
+        <div class="photo"><img src="assets/products/ai-assistant.jpg" alt="Trợ lý AI Thần Nông AgriBeacon"><span class="num-badge">4</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3a4 4 0 0 1 4 4c1.5.8 2 2 2 3.5a4 4 0 0 1-1 2.6 3.5 3.5 0 0 1-5 3.9 3.5 3.5 0 0 1-5-3.9 4 4 0 0 1-1-2.6C6 9 6.5 7.8 8 7a4 4 0 0 1 4-4z"/><path d="M12 7v10"/></svg></div></div>
+        <div class="body">
+          <h3><span class="vn">Trợ lý AI “Thần Nông”</span> <span class="roman">AI Assistant</span></h3>
+          <p>Hỏi–đáp ngôn ngữ tự nhiên (Việt · Anh · Nhật): chẩn đoán sâu bệnh, gợi ý lịch bón phân và kế hoạch canh tác.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Đa ngôn ngữ · huấn luyện theo nông học</span>
+        </div>
       </div>
-      <!-- 5 Platform -->
+
       <div class="card b2">
-        <div class="photo"><img src="assets/products/platform.jpg" alt="AgriBeacon farm management dashboard on desktop, tablet and mobile"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l2.5 2.5L13 8l4 4"/></svg></div></div>
-        <h3><span class="vn">Nền tảng Quản lý</span> <span class="roman">Farm Platform</span></h3>
-        <p>Dashboard cloud + app di động: bảng công việc do AI tạo, bản đồ nhiệt sức khỏe cây, dự báo năng suất, nhật ký truy xuất.</p>
-        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Web · Mobile · Realtime sync</span>
+        <div class="photo"><img src="assets/products/platform.jpg" alt="Nền tảng quản lý trang trại AgriBeacon"><span class="num-badge">5</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l2.5 2.5L13 8l4 4"/></svg></div></div>
+        <div class="body">
+          <h3><span class="vn">Nền tảng Quản lý</span> <span class="roman">Farm Platform</span></h3>
+          <p>Dashboard cloud + app di động: bảng công việc do AI tạo, bản đồ nhiệt sức khỏe cây, dự báo năng suất, nhật ký truy xuất.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Web · Mobile · Realtime sync</span>
+        </div>
       </div>
-      <!-- 6 Vectorization -->
+
       <div class="card b3">
-        <div class="photo"><img src="assets/products/farm-map.png" alt="AgriBeacon digital farm vectorization GIS map"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></div></div>
-        <h3><span class="vn">Số hóa Trang trại</span> <span class="roman">Vectorization</span></h3>
-        <p>Dựng bản đồ ranh giới, đường nội bộ, hệ thống tưới và kho bãi — phân tích dữ liệu GIS để lập kế hoạch mùa vụ tối ưu.</p>
-        <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Bản đồ GIS toàn cảnh trang trại</span>
+        <div class="photo"><img src="assets/products/farm-map.png" alt="Bản đồ GIS số hóa trang trại AgriBeacon"><span class="num-badge">6</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></div></div>
+        <div class="body">
+          <h3><span class="vn">Số hóa Trang trại</span> <span class="roman">Vectorization</span></h3>
+          <p>Dựng bản đồ ranh giới, đường nội bộ, hệ thống tưới và kho bãi — phân tích GIS để lập kế hoạch mùa vụ tối ưu.</p>
+          <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Bản đồ GIS toàn cảnh trang trại</span>
+        </div>
       </div>
     </div>
+
+    <div class="runfoot"><span>AgriBeacon · Precise Signals. Smarter Sensing. Sustainable Growth.</span><span class="pg">02 / 04</span></div>
   </div>
 </section>
 
@@ -365,12 +397,12 @@
     <div class="head-row">
       <div>
         <div class="eyebrow">Cách vận hành · How It Works</div>
-        <h2 style="margin-top:8px">Từ tín hiệu ngoài đồng<br><span class="accent">đến quyết định trong tầm tay</span></h2>
+        <h2>Từ tín hiệu ngoài đồng<br><span class="accent">đến quyết định trong tầm tay</span></h2>
         <div class="rule"></div>
       </div>
       <div class="mini-brand">
         <span class="m"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z"/></svg></span>
-        <span>AgriBeacon</span>
+        <span>Agri<b>Beacon</b></span>
       </div>
     </div>
 
@@ -404,7 +436,7 @@
       <div class="stat"><div class="num g">8+</div><div class="lab">Thông số môi trường<br>đo theo thời gian thực</div></div>
     </div>
 
-    <div style="margin-top:24px">
+    <div class="why-block">
       <div class="eyebrow">Giá trị mang lại · Why It Matters</div>
       <div class="benefits">
         <div class="ben">
@@ -425,21 +457,33 @@
         </div>
       </div>
     </div>
+
+    <div class="closing">
+      <img src="assets/products/spraying-robot.png" alt="Robot AgriBeacon vận hành ngoài đồng">
+      <div class="cg"></div>
+      <div class="ctxt">
+        <div class="k">Sense → Analyze → Act</div>
+        <div class="h">Một vòng lặp khép kín — vận hành liền mạch ngoài đồng</div>
+        <div class="s">Phần cứng thu tín hiệu, AI ra quyết định, robot &amp; đội ngũ thực thi. Lặp lại mỗi ngày.</div>
+      </div>
+    </div>
+
+    <div class="runfoot"><span>AgriBeacon · Precise Signals. Smarter Sensing. Sustainable Growth.</span><span class="pg">03 / 04</span></div>
   </div>
 </section>
 
 <!-- ===================== PAGE 4 · PLANS + CONTACT ===================== -->
-<section class="page">
+<section class="page sheet-2">
   <div class="pad">
     <div class="head-row">
       <div>
         <div class="eyebrow">Gói giải pháp &amp; Liên hệ · Plans &amp; Contact</div>
-        <h2 style="margin-top:8px">Một nền tảng <span class="accent">cho mọi quy mô trang trại</span></h2>
+        <h2>Một nền tảng <span class="accent">cho mọi quy mô trang trại</span></h2>
         <div class="rule"></div>
       </div>
       <div class="mini-brand">
         <span class="m"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z"/></svg></span>
-        <span>AgriBeacon</span>
+        <span>Agri<b>Beacon</b></span>
       </div>
     </div>
 
@@ -447,32 +491,40 @@
       <div class="plan">
         <div class="pname">Starter</div>
         <div class="pdesc">Khởi đầu miễn phí — số hóa trang trại đầu tiên của bạn.</div>
+        <div class="pdiv"></div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>App di động AgriBeacon (miễn phí)</li>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Quản lý 1 trang trại</li>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>AI Assistant (20 câu hỏi/tháng)</li>
         </ul>
+        <div class="pfoot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12h14M13 6l6 6-6 6"/></svg>Dùng thử miễn phí</div>
       </div>
+
       <div class="plan pop">
         <span class="pop-tag">Phổ biến nhất</span>
         <div class="pname">Professional</div>
         <div class="pdesc">Giải pháp đầy đủ cho nông dân chuyên nghiệp muốn tối ưu vận hành.</div>
+        <div class="pdiv"></div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Bản quyền nền tảng + dashboard (1 năm)</li>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Thiết bị AgriBeacon plug &amp; play</li>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>AI Assistant (500 câu hỏi/tháng)</li>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Dịch vụ thuê robot phun thuốc</li>
         </ul>
+        <div class="pfoot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12h14M13 6l6 6-6 6"/></svg>Lựa chọn của hầu hết trang trại</div>
       </div>
+
       <div class="plan">
         <div class="pname">Enterprise</div>
         <div class="pdesc">Giải pháp tùy chỉnh cho doanh nghiệp &amp; HTX quy mô lớn.</div>
+        <div class="pdiv"></div>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Toàn bộ tính năng Professional</li>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>AI Assistant không giới hạn</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>API tích hợp &amp; phát triển phần mềm riêng</li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>API tích hợp &amp; phát triển riêng</li>
           <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Báo cáo tập trung đa trang trại</li>
         </ul>
+        <div class="pfoot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12h14M13 6l6 6-6 6"/></svg>Liên hệ nhận tư vấn riêng</div>
       </div>
     </div>
 
@@ -483,7 +535,8 @@
     </div>
 
     <div class="contact">
-      <div class="dots2"></div>
+      <div class="dots"></div>
+      <div class="glow"></div>
       <div class="ctext">
         <div class="ceyebrow">Gặp chúng tôi tại AGRI VIETNAM 2026</div>
         <h2>Cùng kiến tạo nông nghiệp thông minh</h2>
@@ -502,10 +555,7 @@
       </div>
     </div>
 
-    <div class="footer-line">
-      <span>© 2026 AgriBeacon · Precise Signals. Smarter Sensing. Sustainable Growth.</span>
-      <span class="booth">Hẹn gặp tại AGRI VIETNAM 2026 — SECC, HCMC</span>
-    </div>
+    <div class="runfoot"><span>© 2026 AgriBeacon · Precise Signals. Smarter Sensing. Sustainable Growth.</span><span class="pg">04 / 04</span></div>
   </div>
 </section>
 
