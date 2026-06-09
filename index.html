@@ -2,496 +2,250 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AgriBeacon — Brochure · AGRI VIETNAM 2026</title>
-<meta name="description" content="AgriBeacon — precision AgriTech platform. Drones, spraying robots, IoT sensors, AI analytics and a farm-management platform for perennial-plant farms. Exhibition brochure for AGRI VIETNAM 2026." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>AgriBeacon — Brochure lật trang · AGRI VIETNAM 2026</title>
+<meta name="description" content="AgriBeacon — precision AgriTech: drone, robot phun, cảm biến IoT, AI Thần Nông & nền tảng quản lý nông trại. Brochure lật trang tương tác, AGRI VIETNAM 2026." />
+<meta property="og:title" content="AgriBeacon — Brochure AGRI VIETNAM 2026" />
+<meta property="og:description" content="Lật từng trang brochure AgriTech của AgriBeacon ngay trên trình duyệt." />
 <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ============ Design tokens — calm premium AgriTech ============ */
   :root{
-    --ink:        #16241c;          /* charcoal-green text */
-    --ink-soft:   #5d6f64;          /* muted body */
-    --green:      #1f8a54;          /* brand green */
-    --green-700:  #156b41;
-    --green-900:  #0f3d28;          /* deep panels */
-    --lime:       #8fce4a;          /* the ONLY accent */
-    --lime-ink:   #4e7c1f;          /* lime that reads on light */
-    --paper:      #f7f9f6;          /* off-white page */
-    --paper-2:    #eef3ee;          /* tint blocks / image bg */
-    --card:       #ffffff;
-    --line:       #e4eae3;          /* hairline borders */
-    --line-2:     #d7e0d6;
-    --shadow:     0 2px 10px -4px rgba(18,40,28,.10);
-    --shadow-card:0 1px 3px rgba(18,40,28,.05);
+    --ink:#16241c; --green:#1f8a54; --green-700:#156b41; --green-900:#0f3d28;
+    --lime:#8fce4a; --paper:#f7f9f6; --line:rgba(255,255,255,.14);
   }
-
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{box-sizing:border-box}
+  html,body{height:100%}
   body{
-    font-family:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
-    color:var(--ink);
-    background:#3a463f;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
+    margin:0; font-family:"Be Vietnam Pro",system-ui,sans-serif; color:#eaf3ec;
+    background:
+      radial-gradient(1200px 700px at 50% -10%, #1c5a3a 0%, transparent 60%),
+      radial-gradient(900px 600px at 90% 110%, #0c2c1d 0%, transparent 55%),
+      linear-gradient(180deg, #0f3d28 0%, #0a2a1b 100%);
+    background-attachment:fixed;
+    min-height:100dvh; display:flex; flex-direction:column;
+    overflow:hidden;
+  }
+  /* subtle floating grain dots */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.5;
+    background-image:radial-gradient(rgba(143,206,74,.10) 1px, transparent 1px);
+    background-size:26px 26px;
+    mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
   }
 
-  /* ---- A4 frame ---- */
+  header.bar{
+    display:flex; align-items:center; gap:12px; padding:14px 20px; z-index:5;
+    flex:0 0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
+  .brand img{width:30px; height:30px; filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+  .brand b{font-size:17px}
+  .brand span{color:var(--lime); font-weight:600}
+  .bar .spacer{flex:1}
+  .tag{
+    font-size:12px; font-weight:600; color:#bfe6cb; opacity:.85;
+    border:1px solid var(--line); padding:5px 11px; border-radius:999px;
+    white-space:nowrap;
+  }
+
+  /* ---- Stage ---- */
+  .stage{
+    flex:1 1 auto; position:relative; display:flex; align-items:center; justify-content:center;
+    padding:6px 16px 0; min-height:0;
+  }
+  #book{ width:100%; height:100%; touch-action:pan-y; }
+  #book .stf__parent{ margin:0 auto; }
+  /* page-flip injects .stf__parent; we just give pages a paper look */
   .page{
-    position:relative; width:210mm; height:297mm; margin:14px auto;
-    background:var(--paper); overflow:hidden;
-    box-shadow:0 22px 60px -20px rgba(0,0,0,.5);
+    background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,.04);
+    background-size:cover; background-position:center;
   }
-  .pad{ padding:17mm 16mm 14mm; height:100%; display:flex; flex-direction:column; }
+  .page img{width:100%; height:100%; display:block; object-fit:cover}
+  .page--cover{box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
 
-  /* ---- shared type ---- */
-  .eyebrow{ font-size:10.5px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--green); }
-  h1{ font-weight:800; letter-spacing:-.022em; line-height:1.08; }
-  h2{ font-size:25px; font-weight:800; letter-spacing:-.02em; line-height:1.14; }
-  h3{ font-size:14.5px; font-weight:700; letter-spacing:-.006em; }
-  .hl{ color:var(--green); }
-  .lead{ color:var(--ink-soft); font-weight:400; }
-
-  /* ---- logo lockup (consistent everywhere) ---- */
-  .brand{ display:flex; align-items:center; gap:10px; }
-  .brand .mark{ background:var(--green); border-radius:9px; display:grid; place-items:center; color:#fff; }
-  .brand .mark svg{ display:block; }
-  .brand .name{ font-weight:800; letter-spacing:-.02em; color:var(--ink); }
-  .brand.lg .mark{ width:38px; height:38px; } .brand.lg .mark svg{ width:26px; height:26px; } .brand.lg .name{ font-size:20px; }
-  .brand.sm .mark{ width:27px; height:27px; } .brand.sm .mark svg{ width:19px; height:19px; } .brand.sm .name{ font-size:14px; }
-
-  /* ---- page header (content pages) ---- */
-  .phead{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
-  .phead h2{ margin-top:9px; max-width:13em; }
-  .phead .lead{ font-size:12.5px; margin-top:8px; max-width:30em; }
-  .accent-bar{ width:46px; height:3px; background:var(--lime); border-radius:3px; margin-top:13px; }
-
-  /* ---- running footer (consistent) ---- */
-  .rfoot{ margin-top:auto; padding-top:12px; border-top:1px solid var(--line);
-    display:flex; justify-content:space-between; align-items:center; font-size:9.5px; color:var(--ink-soft); letter-spacing:.04em; }
-  .rfoot .pg{ font-weight:700; color:var(--green); letter-spacing:.16em; }
-
-  /* ===================== PAGE 1 · COVER (split editorial) ===================== */
-  .cover{ display:grid; grid-template-columns:1.12fr .88fr; }
-  .cover-main{ padding:17mm 9mm 14mm 16mm; display:flex; flex-direction:column; }
-  .cover-media{ position:relative; background:var(--paper-2); overflow:hidden; }
-  .cover-media img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.95) contrast(1.02); }
-  .cover-media::after{ content:""; position:absolute; inset:0; background:linear-gradient(195deg, transparent 55%, rgba(15,61,40,.30) 100%); }
-
-  .cover-hero{ margin-top:auto; }
-  .cover .eyebrow{ margin-bottom:16px; }
-  .cover h1{ font-size:43px; max-width:9.5em; color:var(--ink); }
-  .cover h1 .hl{ white-space:nowrap; }
-  .cover .sub{ margin-top:16px; font-size:14px; color:var(--ink-soft); max-width:25em; line-height:1.62; }
-  .cover .chips{ margin-top:20px; display:flex; flex-wrap:wrap; gap:8px; }
-  .cover .chips span{ font-size:11.5px; font-weight:600; color:var(--ink); background:#fff;
-    border:1px solid var(--line-2); padding:6px 13px; border-radius:999px; }
-
-  .booth{ margin-top:26px; display:flex; align-items:stretch; gap:14px; background:#fff;
-    border:1px solid var(--line); border-radius:14px; padding:14px 16px; box-shadow:var(--shadow-card); }
-  .booth .bar{ width:3px; border-radius:3px; background:var(--lime); flex:none; }
-  .booth .b-date{ font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--green); line-height:1.1; flex:none; }
-  .booth .b-date small{ display:block; font-size:10px; font-weight:600; color:var(--ink-soft); letter-spacing:.02em; margin-top:2px; }
-  .booth .b-info{ border-left:1px solid var(--line); padding-left:14px; }
-  .booth .b-info .k{ font-size:9.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); }
-  .booth .b-info .t{ font-size:14px; font-weight:800; margin-top:2px; }
-  .booth .b-info .l{ font-size:11px; color:var(--ink-soft); margin-top:2px; }
-
-  .cover-foot{ margin-top:18px; font-size:10px; color:var(--ink-soft); letter-spacing:.04em; }
-
-  /* ===================== PAGE 2 · ECOSYSTEM ===================== */
-  .grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:18px; flex:1; }
-  .cap{ background:var(--card); border:1px solid var(--line); border-radius:13px; overflow:hidden;
-    box-shadow:var(--shadow-card); display:flex; flex-direction:column; }
-  .cap .img{ flex:1; min-height:106px; position:relative; background:var(--paper-2); overflow:hidden; }
-  .cap .img img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.85) contrast(1.02) brightness(1.02); }
-  .cap .img::after{ content:""; position:absolute; inset:0; background:rgba(20,80,52,.16); }   /* uniform brand wash */
-  .cap .bd{ padding:13px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
-  .cap h3{ display:flex; align-items:center; gap:7px; }
-  .cap h3 svg{ width:16px; height:16px; color:var(--green); flex:none; }
-  .cap .en{ font-size:10px; font-weight:500; font-style:italic; color:var(--ink-soft); margin-top:-3px; padding-left:23px; }
-  .cap p{ font-size:11.5px; color:var(--ink-soft); line-height:1.5; }
-  .cap .metric{ margin-top:auto; font-size:10.5px; font-weight:700; color:var(--lime-ink); letter-spacing:.01em; }
-
-  .eco-note{ margin-top:14px; font-size:11.5px; color:var(--ink-soft); text-align:center; }
-  .eco-note b{ color:var(--ink); font-weight:700; }
-
-  /* ===================== PAGE 3 · HOW IT WORKS ===================== */
-  .flow{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; gap:0; margin-top:20px; }
-  .stepc{ background:var(--card); border:1px solid var(--line); border-radius:13px; padding:18px 16px; box-shadow:var(--shadow-card); }
-  .stepc .n{ width:30px; height:30px; border-radius:8px; display:grid; place-items:center; font-weight:800; font-size:13px;
-    color:var(--green-900); background:var(--lime); margin-bottom:11px; }
-  .stepc h3{ font-size:14.5px; }
-  .stepc .en{ font-size:10.5px; font-style:italic; color:var(--green); font-weight:600; margin-top:1px; }
-  .stepc p{ font-size:11.5px; color:var(--ink-soft); margin-top:8px; line-height:1.5; }
-  .flow .ar{ display:grid; place-items:center; color:var(--line-2); padding:0 9px; }
-  .flow .ar svg{ width:20px; height:20px; }
-
-  .stats{ margin-top:18px; background:#fff; border:1px solid var(--line); border-radius:14px;
-    display:grid; grid-template-columns:repeat(4,1fr); box-shadow:var(--shadow-card); }
-  .stat{ text-align:center; padding:20px 10px; }
-  .stat + .stat{ border-left:1px solid var(--line); }
-  .stat .num{ font-size:32px; font-weight:800; letter-spacing:-.03em; color:var(--green); line-height:1; }
-  .stat .u{ width:22px; height:3px; background:var(--lime); border-radius:3px; margin:9px auto 8px; }
-  .stat .lab{ font-size:10.5px; color:var(--ink-soft); line-height:1.4; }
-
-  .matter{ margin-top:20px; }
-  .matter .eyebrow{ margin-bottom:13px; }
-  .blocks{ display:grid; grid-template-columns:1fr 1fr; gap:14px 22px; }
-  .blk{ display:flex; gap:12px; align-items:flex-start; }
-  .blk .bi{ flex:none; width:36px; height:36px; border-radius:10px; display:grid; place-items:center;
-    color:var(--green); background:var(--paper-2); border:1px solid var(--line); }
-  .blk .bi svg{ width:18px; height:18px; }
-  .blk h3{ font-size:13px; }
-  .blk p{ font-size:11.5px; color:var(--ink-soft); line-height:1.48; margin-top:2px; }
-
-  .closing{ margin-top:auto; background:var(--green-900); color:#fff; border-radius:14px;
-    padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
-  .closing .k{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--lime); }
-  .closing .h{ font-size:16px; font-weight:700; margin-top:4px; letter-spacing:-.01em; }
-  .closing .pill{ flex:none; font-size:11px; font-weight:700; color:var(--green-900); background:var(--lime);
-    padding:9px 16px; border-radius:999px; }
-
-  /* ===================== PAGE 4 · PLANS + CONTACT ===================== */
-  .plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-top:18px; align-items:stretch; }
-  .plan{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 16px 16px;
-    box-shadow:var(--shadow-card); display:flex; flex-direction:column; position:relative; }
-  .plan.rec{ border-color:var(--green); box-shadow:var(--shadow); }
-  .plan .ptag{ font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
-  .plan.rec .ptag{ color:var(--green); }
-  .plan .pname{ font-size:17px; font-weight:800; letter-spacing:-.01em; margin-top:3px; }
-  .plan .pdesc{ font-size:11px; color:var(--ink-soft); margin-top:6px; line-height:1.45; min-height:3em; }
-  .plan .pdiv{ height:1px; background:var(--line); margin:13px 0; }
-  .plan ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
-  .plan li{ font-size:11.5px; display:flex; gap:8px; align-items:flex-start; color:var(--ink); line-height:1.4; }
-  .plan li svg{ width:15px; height:15px; flex:none; margin-top:1px; color:var(--green); }
-  .plan .rec-strip{ position:absolute; top:0; left:0; right:0; height:3px; background:var(--lime); border-radius:14px 14px 0 0; }
-
-  .why3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px; }
-  .why3 .w{ display:flex; gap:11px; align-items:flex-start; }
-  .why3 .wi{ flex:none; width:34px; height:34px; border-radius:9px; display:grid; place-items:center;
-    color:var(--green); background:var(--paper-2); border:1px solid var(--line); }
-  .why3 .wi svg{ width:17px; height:17px; }
-  .why3 h3{ font-size:12.5px; }
-  .why3 p{ font-size:10.5px; color:var(--ink-soft); line-height:1.42; margin-top:2px; }
-
-  .contact{ margin-top:auto; background:var(--green-900); color:#fff; border-radius:16px; overflow:hidden;
-    display:grid; grid-template-columns:1.35fr .65fr; }
-  .contact .cmain{ padding:24px 26px; }
-  .contact .ceyebrow{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--lime); }
-  .contact h2{ font-size:21px; color:#fff; margin-top:7px; max-width:14em; }
-  .contact .csub{ font-size:11.5px; color:rgba(255,255,255,.72); margin-top:6px; }
-  .contact .rows{ margin-top:16px; display:flex; flex-direction:column; gap:11px; }
-  .crow{ display:flex; align-items:center; gap:11px; font-size:13px; color:rgba(255,255,255,.95); }
-  .crow svg{ width:15px; height:15px; color:var(--lime); flex:none; }
-  .contact .cqr{ background:rgba(255,255,255,.06); border-left:1px solid rgba(255,255,255,.12);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 16px; text-align:center; }
-  .contact .cqr .box{ background:#fff; padding:9px; border-radius:11px; }
-  .contact .cqr .box svg{ width:84px; height:84px; display:block; }
-  .contact .cqr .qcap{ font-size:9.5px; color:rgba(255,255,255,.8); margin-top:11px; font-weight:600; line-height:1.45; }
-
-  /* ---- Print ---- */
-  @page{ size:A4; margin:0; }
-  @media print{
-    body{ background:#fff; }
-    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
-    .page:last-child{ page-break-after:auto; }
-    .no-print{ display:none !important; }
+  .hint{
+    position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+    font-size:12px; color:#bfe6cb; opacity:.7; pointer-events:none;
+    display:flex; align-items:center; gap:7px; transition:opacity .4s;
   }
-  .no-print{ max-width:210mm; margin:18px auto 4px; color:#cfe3d4; font-size:12.5px; text-align:center; }
-  .no-print a{ color:#fff; }
+  .hint svg{width:15px;height:15px}
+
+  /* ---- Controls ---- */
+  .controls{
+    flex:0 0 auto; display:flex; align-items:center; justify-content:center; gap:10px;
+    padding:14px 16px calc(14px + env(safe-area-inset-bottom)); z-index:5;
+  }
+  .btn{
+    appearance:none; border:1px solid var(--line); background:rgba(255,255,255,.06);
+    color:#eaf3ec; width:46px; height:46px; border-radius:50%; cursor:pointer;
+    display:grid; place-items:center; transition:transform .12s, background .2s, opacity .2s;
+    backdrop-filter:blur(6px);
+  }
+  .btn:hover{background:rgba(143,206,74,.18); transform:translateY(-1px)}
+  .btn:active{transform:scale(.94)}
+  .btn:disabled{opacity:.3; cursor:default; transform:none}
+  .btn svg{width:22px;height:22px}
+  .counter{
+    min-width:88px; text-align:center; font-weight:600; font-size:14px;
+    color:#dff3e4; letter-spacing:.3px; user-select:none;
+  }
+  .counter b{color:var(--lime)}
+  .pill{
+    display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 18px;
+    border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.06);
+    color:#eaf3ec; text-decoration:none; font-weight:600; font-size:14px; cursor:pointer;
+    backdrop-filter:blur(6px); transition:background .2s, transform .12s;
+  }
+  .pill:hover{background:rgba(143,206,74,.18); transform:translateY(-1px)}
+  .pill svg{width:18px;height:18px}
+  .pill.primary{background:var(--lime); color:#163a10; border-color:transparent}
+  .pill.primary:hover{background:#9fd95f}
+
+  .loader{
+    position:fixed; inset:0; display:grid; place-items:center; z-index:20;
+    background:linear-gradient(180deg,#0f3d28,#0a2a1b); transition:opacity .5s;
+  }
+  .loader .ring{
+    width:54px;height:54px;border-radius:50%;
+    border:3px solid rgba(143,206,74,.25); border-top-color:var(--lime);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loader.hide{opacity:0; pointer-events:none}
+
+  @media (max-width:640px){
+    .brand b{font-size:15px} .tag{display:none}
+    .pill span.lbl{display:none} .pill{padding:0; width:46px; justify-content:center}
+    .controls{gap:8px}
+  }
 </style>
 </head>
 <body>
+  <div class="loader" id="loader"><div class="ring"></div></div>
 
-<div class="no-print">In brochure: mở file này trong Chrome → <b>Cmd/Ctrl + P</b> → <b>Save as PDF</b>, khổ A4, lề None, bật “Background graphics”. (Bản có sẵn: <b>dist/agribeacon-brochure.pdf</b>.)</div>
+  <header class="bar">
+    <a class="brand" href="https://agribeacon.tech" target="_blank" rel="noopener">
+      <img src="assets/logo-mark.svg" alt="AgriBeacon" />
+      <b>AgriBeacon</b><span>Brochure</span>
+    </a>
+    <div class="spacer"></div>
+    <div class="tag">AGRI VIETNAM 2026 · SECC, HCMC</div>
+  </header>
 
-<!-- ===================== PAGE 1 · COVER ===================== -->
-<section class="page cover">
-  <div class="cover-main">
-    <div class="brand lg">
-      <span class="mark"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z"/></svg></span>
-      <span class="name">Agri<b>Beacon</b></span>
+  <main class="stage">
+    <div id="book"></div>
+    <div class="hint" id="hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      Chạm hoặc kéo mép trang để lật
     </div>
+  </main>
 
-    <div class="cover-hero">
-      <div class="eyebrow">Precision AgriTech Platform</div>
-      <h1>Tín hiệu <span class="hl">chính xác</span> cho nền nông nghiệp thông minh</h1>
-      <p class="sub">Drone, robot, cảm biến IoT và AI hợp nhất trên một nền tảng — giám sát, phân tích và tối ưu mọi quyết định trên trang trại cây lâu năm.</p>
+  <nav class="controls">
+    <button class="btn" id="prev" aria-label="Trang trước">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="counter"><b id="cur">1</b> / <span id="total">18</span></div>
+    <button class="btn" id="next" aria-label="Trang sau">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <button class="btn" id="fs" aria-label="Toàn màn hình" title="Toàn màn hình">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
+    </button>
+    <a class="pill primary" href="assets/AgriBeacon-Brochure.pdf" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      <span class="lbl">Tải PDF</span>
+    </a>
+  </nav>
 
-      <div class="chips">
-        <span>Drone &amp; Robot tự hành</span>
-        <span>Cảm biến IoT</span>
-        <span>AI Analytics</span>
-      </div>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+  <script>
+    const TOTAL = 18;
+    const pages = Array.from({length:TOTAL}, (_,i)=>
+      `assets/pages/page-${String(i+1).padStart(2,'0')}.webp`);
 
-      <div class="booth">
-        <div class="bar"></div>
-        <div class="b-date">10–12.06<small>2026</small></div>
-        <div class="b-info">
-          <div class="k">Gặp chúng tôi tại</div>
-          <div class="t">AGRI VIETNAM 2026</div>
-          <div class="l">SECC, TP. Hồ Chí Minh · Triển lãm Quốc tế lần thứ 6</div>
-        </div>
-      </div>
+    // Preload images, then build the flipbook
+    let loaded = 0;
+    const imgs = pages.map(src=>{
+      const im = new Image(); im.src = src;
+      im.onload = im.onerror = ()=>{ if(++loaded===TOTAL) init(); };
+      return im;
+    });
 
-      <div class="cover-foot">agribeacon.tech · Precise Signals. Smarter Sensing. Sustainable Growth.</div>
-    </div>
-  </div>
-  <div class="cover-media">
-    <img src="assets/products/spraying-robot.png" alt="Robot phun thuốc tự hành AgriBeacon vận hành trong vườn cây">
-  </div>
-</section>
+    const bookEl = document.getElementById('book');
+    const $cur = document.getElementById('cur');
+    const $prev = document.getElementById('prev');
+    const $next = document.getElementById('next');
+    let pf;
 
-<!-- ===================== PAGE 2 · ECOSYSTEM ===================== -->
-<section class="page">
-  <div class="pad">
-    <div class="phead">
-      <div>
-        <div class="eyebrow">Hệ sinh thái · Connected Ecosystem</div>
-        <h2>Một nền tảng kết nối <span class="hl">phần cứng &amp; phần mềm</span></h2>
-        <p class="lead">Dữ liệu từ drone, robot và cảm biến được AI xử lý thành hành động cụ thể — khép kín từ ngoài đồng đến quyết định.</p>
-      </div>
-      <div class="brand sm">
-        <span class="mark"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z"/></svg></span>
-        <span class="name">Agri<b>Beacon</b></span>
-      </div>
-    </div>
+    function init(){
+      // base page ratio = 1400 x 1963 (w x h). Stretch fits this to #book,
+      // honouring both block width AND height, and flips to a single page
+      // (portrait) once the block is narrower than 2*minWidth.
+      pf = new St.PageFlip(bookEl, {
+        width: 1400, height: 1963,
+        size: 'stretch',
+        minWidth: 340, maxWidth: 1400,
+        minHeight: 476, maxHeight: 1963,
+        drawShadow: true,
+        maxShadowOpacity: 0.55,
+        flippingTime: 700,
+        usePortrait: true,
+        showCover: true,
+        mobileScrollSupport: false,
+        swipeDistance: 18,
+        clickEventForward: false,
+      });
 
-    <div class="grid">
-      <div class="cap">
-        <div class="img"><img src="assets/products/drone.png" alt="Drone nông nghiệp RTK AgriBeacon"></div>
-        <div class="bd">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><rect x="9.5" y="10" width="5" height="4" rx="1"/></svg>Drone tự hành</h3>
-          <div class="en">Autonomous Drones</div>
-          <p>Quét toàn trang trại, chấm điểm sức khỏe cây và phát hiện sâu bệnh sớm bằng camera AI.</p>
-          <div class="metric">Giám sát trên không 4K</div>
-        </div>
-      </div>
+      pf.loadFromImages(pages);
 
-      <div class="cap">
-        <div class="img"><img src="assets/products/spraying-robot.png" alt="Robot phun thuốc tự hành AgriBeacon"></div>
-        <div class="bd">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="9" width="16" height="9" rx="2"/><path d="M12 9V5M9 5h6"/><circle cx="9" cy="13.5" r="1"/><circle cx="15" cy="13.5" r="1"/></svg>Robot phun thuốc</h3>
-          <div class="en">Spraying Robots</div>
-          <p>Phun chính xác theo từng cây, điều khiển từ xa, vòi phun điều chỉnh bằng AI.</p>
-          <div class="metric">Giảm 60% hóa chất</div>
-        </div>
-      </div>
+      pf.on('flip', e=>{
+        const p = e.data + 1;
+        $cur.textContent = Math.min(p, TOTAL);
+        $prev.disabled = e.data <= 0;
+        $next.disabled = e.data >= TOTAL-1;
+        const hint = document.getElementById('hint');
+        if (hint) hint.style.opacity = 0;
+      });
 
-      <div class="cap">
-        <div class="img"><img src="assets/products/iot-sensor.png" alt="Cảm biến IoT đất và môi trường AgriBeacon"></div>
-        <div class="bd">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3M6.5 6.5l2 2M15.5 15.5l2 2M17.5 6.5l-2 2M8.5 15.5l-2 2"/></svg>Cảm biến IoT</h3>
-          <div class="en">IoT Sensor Network</div>
-          <p>Đo độ ẩm đất, dinh dưỡng, vi khí hậu và nguồn nước theo thời gian thực.</p>
-          <div class="metric">8+ thông số · 24/7</div>
-        </div>
-      </div>
+      document.getElementById('total').textContent = TOTAL;
+      $prev.disabled = true;
+      hideLoader();
+    }
 
-      <div class="cap">
-        <div class="img"><img src="assets/products/ai-assistant.jpg" alt="Trợ lý AI Thần Nông AgriBeacon"></div>
-        <div class="bd">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4a4 4 0 0 1 4 4c1.4.7 2 1.9 2 3.4a3.8 3.8 0 0 1-1 2.5 3.4 3.4 0 0 1-5 3.7 3.4 3.4 0 0 1-5-3.7 3.8 3.8 0 0 1-1-2.5C6 9.9 6.6 8.7 8 8a4 4 0 0 1 4-4z"/></svg>Trợ lý AI “Thần Nông”</h3>
-          <div class="en">AI Assistant</div>
-          <p>Chẩn đoán sâu bệnh và gợi ý lịch chăm sóc bằng ngôn ngữ tự nhiên.</p>
-          <div class="metric">Việt · Anh · Nhật</div>
-        </div>
-      </div>
+    function hideLoader(){
+      const l = document.getElementById('loader');
+      l.classList.add('hide');
+      setTimeout(()=>l.remove(), 600);
+    }
 
-      <div class="cap">
-        <div class="img"><img src="assets/products/platform.jpg" alt="Nền tảng quản lý trang trại AgriBeacon"></div>
-        <div class="bd">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Nền tảng quản lý</h3>
-          <div class="en">Farm Platform</div>
-          <p>Dashboard + app: công việc do AI tạo, bản đồ nhiệt và dự báo năng suất.</p>
-          <div class="metric">Web · Mobile · Realtime</div>
-        </div>
-      </div>
+    // Controls
+    $prev.addEventListener('click', ()=> pf && pf.flipPrev());
+    $next.addEventListener('click', ()=> pf && pf.flipNext());
+    document.addEventListener('keydown', e=>{
+      if(!pf) return;
+      if(e.key==='ArrowLeft') pf.flipPrev();
+      if(e.key==='ArrowRight') pf.flipNext();
+    });
 
-      <div class="cap">
-        <div class="img"><img src="assets/products/farm-map.png" alt="Bản đồ GIS số hóa trang trại AgriBeacon"></div>
-        <div class="bd">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5 4 7v12l5-2 6 2 5-2V5l-5 2-6-2z"/><path d="M9 5v12M15 7v12"/></svg>Số hóa trang trại</h3>
-          <div class="en">GIS Vectorization</div>
-          <p>Dựng bản đồ ranh giới, tưới tiêu và kho bãi để lập kế hoạch mùa vụ.</p>
-          <div class="metric">Bản đồ GIS toàn cảnh</div>
-        </div>
-      </div>
-    </div>
+    // Fullscreen
+    document.getElementById('fs').addEventListener('click', ()=>{
+      if(!document.fullscreenElement){ document.documentElement.requestFullscreen?.(); }
+      else { document.exitFullscreen?.(); }
+    });
 
-    <div class="eco-note"><b>Sense → Analyze → Act</b> — một vòng lặp khép kín cho người nông dân hiện đại.</div>
+    // Resize → re-stretch to the new container size (keeps current page)
+    let rt;
+    window.addEventListener('resize', ()=>{
+      if(!pf) return;
+      clearTimeout(rt);
+      rt = setTimeout(()=> pf.update(), 160);
+    });
 
-    <div class="rfoot"><span>AgriBeacon · Precise Signals. Smarter Sensing. Sustainable Growth.</span><span class="pg">02 / 04</span></div>
-  </div>
-</section>
-
-<!-- ===================== PAGE 3 · HOW IT WORKS ===================== -->
-<section class="page">
-  <div class="pad">
-    <div class="phead">
-      <div>
-        <div class="eyebrow">Cách vận hành · How It Works</div>
-        <h2>Từ tín hiệu ngoài đồng <span class="hl">đến quyết định</span></h2>
-        <p class="lead">Một vòng lặp ba bước, lặp lại mỗi ngày trên trang trại của bạn.</p>
-      </div>
-      <div class="brand sm">
-        <span class="mark"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z"/></svg></span>
-        <span class="name">Agri<b>Beacon</b></span>
-      </div>
-    </div>
-
-    <div class="flow">
-      <div class="stepc">
-        <div class="n">1</div>
-        <h3>Thu thập</h3>
-        <div class="en">Sense</div>
-        <p>Drone, robot và cảm biến IoT ghi nhận dữ liệu trang trại theo thời gian thực.</p>
-      </div>
-      <div class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="stepc">
-        <div class="n">2</div>
-        <h3>Phân tích AI</h3>
-        <div class="en">Analyze</div>
-        <p>AI dự báo năng suất, dựng bản đồ nhiệt sức khỏe cây và phát hiện bất thường.</p>
-      </div>
-      <div class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="stepc">
-        <div class="n">3</div>
-        <h3>Hành động</h3>
-        <div class="en">Act</div>
-        <p>Gợi ý thời điểm &amp; liều lượng tối ưu — thực thi qua robot và đội ngũ.</p>
-      </div>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><div class="num">60%</div><div class="u"></div><div class="lab">Tiết kiệm hóa chất</div></div>
-      <div class="stat"><div class="num">92%+</div><div class="u"></div><div class="lab">Độ chính xác dự báo</div></div>
-      <div class="stat"><div class="num">50K+</div><div class="u"></div><div class="lab">Hecta giám sát</div></div>
-      <div class="stat"><div class="num">8+</div><div class="u"></div><div class="lab">Thông số realtime</div></div>
-    </div>
-
-    <div class="matter">
-      <div class="eyebrow">Giá trị mang lại · Why It Matters</div>
-      <div class="blocks">
-        <div class="blk">
-          <div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg></div>
-          <div><h3>Giám sát realtime</h3><p>Theo dõi toàn bộ trang trại mọi lúc, mọi nơi trên một màn hình.</p></div>
-        </div>
-        <div class="blk">
-          <div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
-          <div><h3>Phát hiện sớm</h3><p>Cảnh báo sâu bệnh và bất thường trước khi lan rộng ra cả vườn.</p></div>
-        </div>
-        <div class="blk">
-          <div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20v-3M18 20v-9"/><path d="M3 20h18"/></svg></div>
-          <div><h3>Tối ưu chăm sóc</h3><p>AI gợi ý đúng thời điểm, đúng liều lượng cho từng vùng cây.</p></div>
-        </div>
-        <div class="blk">
-          <div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <div><h3>Giảm chi phí</h3><p>Cắt lãng phí vật tư và vận hành đội ngũ ngoài đồng hiệu quả hơn.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="closing">
-      <div>
-        <div class="k">Dữ liệu tập trung</div>
-        <div class="h">Drone · Robot · Cảm biến · App — tất cả trong một nguồn dữ liệu duy nhất.</div>
-      </div>
-      <span class="pill">agribeacon.tech</span>
-    </div>
-
-    <div class="rfoot"><span>AgriBeacon · Precise Signals. Smarter Sensing. Sustainable Growth.</span><span class="pg">03 / 04</span></div>
-  </div>
-</section>
-
-<!-- ===================== PAGE 4 · PLANS + CONTACT ===================== -->
-<section class="page">
-  <div class="pad">
-    <div class="phead">
-      <div>
-        <div class="eyebrow">Gói giải pháp · Plans</div>
-        <h2>Phù hợp <span class="hl">mọi quy mô</span> trang trại</h2>
-        <p class="lead">Bắt đầu miễn phí, mở rộng khi bạn lớn lên.</p>
-      </div>
-      <div class="brand sm">
-        <span class="mark"><svg viewBox="0 0 708.7 708.7"><path fill="currentColor" d="M472.7,412.9L375.1,172c-0.8-2-2.8-3.4-5-3.4h-45.9c-2.2,0-4.2,1.3-5,3.4l-97.5,240.9c-1.3,3.3,0.3,7.1,3.6,8.4c0.8,0.3,1.6,0.5,2.4,0.5h41.7c20,0,36.9-14.7,39.8-34.5l10-69.8H313c-1.9,0-3.5-1.5-3.5-3.5c0-1.9,1.5-3.5,3.5-3.5h68.3c1.9,0,3.5,1.5,3.5,3.5c0,0.9-0.4,1.8-1,2.4c-0.7,0.6-1.5,1-2.5,1h-6.1l14.8,104.3h76.6c3.6,0,6.5-2.9,6.5-6.5C473.1,414.4,473,413.6,472.7,412.9z"/></svg></span>
-        <span class="name">Agri<b>Beacon</b></span>
-      </div>
-    </div>
-
-    <div class="plans">
-      <div class="plan">
-        <div class="ptag">Dùng thử</div>
-        <div class="pname">Starter</div>
-        <div class="pdesc">Số hóa trang trại đầu tiên của bạn — miễn phí.</div>
-        <div class="pdiv"></div>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>App di động AgriBeacon</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Quản lý 1 trang trại</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>AI Assistant 20 câu/tháng</li>
-        </ul>
-      </div>
-
-      <div class="plan rec">
-        <div class="rec-strip"></div>
-        <div class="ptag">Khuyên dùng</div>
-        <div class="pname">Professional</div>
-        <div class="pdesc">Đầy đủ cho nông dân chuyên nghiệp muốn tối ưu vận hành.</div>
-        <div class="pdiv"></div>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Nền tảng + dashboard (1 năm)</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Thiết bị plug &amp; play</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>AI Assistant 500 câu/tháng</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Dịch vụ thuê robot phun</li>
-        </ul>
-      </div>
-
-      <div class="plan">
-        <div class="ptag">Mở rộng</div>
-        <div class="pname">Enterprise</div>
-        <div class="pdesc">Tùy chỉnh cho doanh nghiệp &amp; HTX quy mô lớn.</div>
-        <div class="pdiv"></div>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Toàn bộ tính năng Professional</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>AI Assistant không giới hạn</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>API tích hợp &amp; phát triển riêng</li>
-          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Báo cáo đa trang trại</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="why3">
-      <div class="w"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg></div><div><h3>Phần cứng + phần mềm</h3><p>Một hệ sinh thái duy nhất, vận hành hài hòa.</p></div></div>
-      <div class="w"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><div><h3>AI đa ngôn ngữ</h3><p>Việt · Anh · Nhật cho thị trường quốc tế.</p></div></div>
-      <div class="w"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg></div><div><h3>Chuyên cây lâu năm</h3><p>Thiết kế riêng cho trang trại cây trồng lâu năm.</p></div></div>
-    </div>
-
-    <div class="contact">
-      <div class="cmain">
-        <div class="ceyebrow">Liên hệ · AGRI VIETNAM 2026</div>
-        <h2>Cùng kiến tạo nông nghiệp thông minh</h2>
-        <div class="csub">Ghé gian hàng tại SECC, TP.HCM · 10–12 / 6 / 2026 — hoặc liên hệ ngay, phản hồi trong 24 giờ.</div>
-        <div class="rows">
-          <div class="crow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18v14H3zM3 7l9 6 9-6"/></svg>agribeacon.tech</div>
-          <div class="crow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>+84 339 280 135</div>
-          <div class="crow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>KĐT Geleximco, Hoài Đức, Hà Nội</div>
-        </div>
-      </div>
-      <div class="cqr">
-        <div class="box">
-          <svg viewBox="0 0 33 33" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h33v33H0z"/><path stroke="#0f3d28" d="M4 4.5h7m6 0h1m2 0h1m1 0h7M4 5.5h1m5 0h1m4 0h1m1 0h4m1 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m1 0h2m6 0h1m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m1 0h1m2 0h3m4 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m1 0h1m1 0h1m1 0h5m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 11.5h1m1 0h1M4 12.5h1m1 0h5m2 0h3m1 0h3m2 0h5M6 13.5h1m1 0h2m4 0h1m3 0h1m1 0h1m2 0h1m3 0h1M4 14.5h1m2 0h5m1 0h1m2 0h1m1 0h6m1 0h1m1 0h2M6 15.5h2m3 0h1m1 0h1m2 0h1m2 0h1m1 0h1m6 0h1M6 16.5h1m1 0h1m1 0h10m1 0h2m1 0h1m1 0h3M4 17.5h3m1 0h1m3 0h1m7 0h2m1 0h1m1 0h1m1 0h1M4 18.5h1m2 0h2m1 0h2m3 0h2m1 0h3m1 0h4m1 0h2M4 19.5h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h3m2 0h2m3 0h1M4 20.5h1m1 0h2m2 0h2m3 0h1m1 0h8m1 0h1M12 21.5h1m3 0h1m2 0h2m3 0h2M4 22.5h7m3 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h3M4 23.5h1m5 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h2m1 0h1M4 24.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h9m1 0h3M4 25.5h1m1 0h3m1 0h1m1 0h3m2 0h1m1 0h4m1 0h5M4 26.5h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h1m5 0h2m1 0h1M4 27.5h1m5 0h1m2 0h1m1 0h1m3 0h2m2 0h3m2 0h1M4 28.5h7m1 0h1m2 0h2m4 0h8"/></svg>
-        </div>
-        <div class="qcap">Quét để khám phá<br>agribeacon.tech</div>
-      </div>
-    </div>
-
-    <div class="rfoot"><span>© 2026 AgriBeacon · Precise Signals. Smarter Sensing. Sustainable Growth.</span><span class="pg">04 / 04</span></div>
-  </div>
-</section>
-
+    // safety: if images are cached, onload may have already fired before listeners — fallback
+    setTimeout(()=>{ if(!pf && loaded>=TOTAL) init(); }, 1500);
+  </script>
 </body>
 </html>
