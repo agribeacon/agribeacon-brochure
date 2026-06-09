@@ -6,17 +6,22 @@ Brochure tham dự **AGRI VIETNAM 2026** — Triển lãm Quốc tế lần th�
 
 A print-ready, 4-page A4 brochure for [agribeacon.tech](https://agribeacon.tech) — autonomous drones, spraying robots, IoT sensors, the "Thần Nông" AI assistant, and the AgriBeacon farm-management platform for perennial-plant farms.
 
+> 📖 **Flipbook tương tác (18 trang):** mở `index.html` hoặc xem live trên GitHub Pages — lật từng trang bằng chuột / vuốt trên điện thoại.
+
 ---
 
 ## 📂 Nội dung repo
 
 | File | Mô tả |
 |------|-------|
-| `index.html` | Brochure 4 trang A4 — tự chứa (self-contained), in trực tiếp ra PDF |
-| `dist/agribeacon-brochure.pdf` | **Bản PDF in sẵn** (A4, 4 trang) — gửi nhà in hoặc in tại chỗ |
+| `index.html` | **Flipbook lật trang** — brochure 18 trang tương tác (StPageFlip), trang chính trên GitHub Pages |
+| `assets/pages/page-*.webp` | 18 trang brochure render từ PDF (WebP, 1400px) cho flipbook |
+| `assets/AgriBeacon-Brochure.pdf` | **Bản PDF 18 trang** (nguồn của flipbook) — nút "Tải PDF" |
+| `print.html` | Brochure 4 trang A4 — tự chứa, in trực tiếp ra PDF |
+| `dist/agribeacon-brochure.pdf` | Bản PDF in sẵn (A4, 4 trang) — gửi nhà in |
 | `assets/logo-mark.svg` | Logo mark AgriBeacon (lấy từ favicon chính thức) |
 | `assets/qr-website.svg` | Mã QR dẫn về agribeacon.tech |
-| `build.sh` | Script tái tạo PDF bằng headless Chrome |
+| `build.sh` | Script tái tạo PDF A4 từ `print.html` bằng headless Chrome |
 
 ## 🗂 Cấu trúc 4 trang
 
@@ -30,7 +35,7 @@ A print-ready, 4-page A4 brochure for [agribeacon.tech](https://agribeacon.tech)
 **Cách 1 — có sẵn:** mở `dist/agribeacon-brochure.pdf`.
 
 **Cách 2 — in từ trình duyệt:**
-1. Mở `index.html` bằng **Google Chrome**.
+1. Mở `print.html` bằng **Google Chrome**.
 2. `Cmd/Ctrl + P` → **Save as PDF**.
 3. Khổ giấy **A4**, lề **None**, bật **Background graphics**.
 
