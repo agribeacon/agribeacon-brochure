@@ -163,22 +163,27 @@
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <script>
     const TOTAL = 18;
-    const pages = Array.from({length:TOTAL}, (_,i)=>
-      `assets/pages/page-${String(i+1).padStart(2,'0')}.webp`);
-
-    // Preload images, then build the flipbook
-    let loaded = 0;
-    const imgs = pages.map(src=>{
-      const im = new Image(); im.src = src;
-      im.onload = im.onerror = ()=>{ if(++loaded===TOTAL) init(); };
-      return im;
-    });
-
     const bookEl = document.getElementById('book');
     const $cur = document.getElementById('cur');
     const $prev = document.getElementById('prev');
     const $next = document.getElementById('next');
-    let pf;
+    let pf, loaded = 0;
+
+    // Build real <img> pages → HTML render mode. The browser paints each <img>
+    // at native/retina resolution (no canvas downscaling), so pages stay crisp.
+    for (let i=1; i<=TOTAL; i++){
+      const div = document.createElement('div');
+      const hard = (i===1 || i===TOTAL);
+      div.className = 'page' + (hard ? ' page--cover' : '');
+      if (hard) div.setAttribute('data-density','hard');
+      const img = document.createElement('img');
+      img.src = `assets/pages/page-${String(i).padStart(2,'0')}.webp`;
+      img.alt = `AgriBeacon brochure — trang ${i}`;
+      img.draggable = false;
+      img.onload = img.onerror = ()=>{ if(++loaded===TOTAL) hideLoader(); };
+      div.appendChild(img);
+      bookEl.appendChild(div);
+    }
 
     function init(){
       // base page ratio = 1400 x 1963 (w x h). Stretch fits this to #book,
@@ -199,7 +204,7 @@
         clickEventForward: false,
       });
 
-      pf.loadFromImages(pages);
+      pf.loadFromHTML(bookEl.querySelectorAll('.page'));
 
       pf.on('flip', e=>{
         const p = e.data + 1;
@@ -212,8 +217,8 @@
 
       document.getElementById('total').textContent = TOTAL;
       $prev.disabled = true;
-      hideLoader();
     }
+    init();
 
     function hideLoader(){
       const l = document.getElementById('loader');
@@ -244,8 +249,8 @@
       rt = setTimeout(()=> pf.update(), 160);
     });
 
-    // safety: if images are cached, onload may have already fired before listeners — fallback
-    setTimeout(()=>{ if(!pf && loaded>=TOTAL) init(); }, 1500);
+    // safety: never leave the loader stuck if an image stalls
+    setTimeout(hideLoader, 4000);
   </script>
 </body>
 </html>
