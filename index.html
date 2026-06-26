@@ -50,6 +50,20 @@
     border:1px solid var(--line); padding:5px 11px; border-radius:999px;
     white-space:nowrap;
   }
+  /* ---- Language toggle ---- */
+  .langtoggle{
+    display:inline-flex; padding:3px; gap:2px; border-radius:999px;
+    border:1px solid var(--line); background:rgba(255,255,255,.06);
+    backdrop-filter:blur(6px); margin-left:12px;
+  }
+  .lng{
+    appearance:none; border:0; background:transparent; cursor:pointer;
+    color:#cfe6d6; font-family:inherit; font-weight:700; font-size:12px;
+    letter-spacing:.5px; padding:5px 12px; border-radius:999px;
+    transition:background .2s, color .2s;
+  }
+  .lng:hover{color:#fff}
+  .lng.active{background:var(--lime); color:#163a10}
 
   /* ---- Stage ---- */
   .stage{
@@ -167,7 +181,11 @@
       <b>AgriBeacon</b><span>Brochure</span>
     </a>
     <div class="spacer"></div>
-    <div class="tag">AGRI VIETNAM 2026 · SECC, HCMC</div>
+    <div class="tag" id="tag">AGRI VIETNAM 2026 · SECC, HCMC</div>
+    <div class="langtoggle" id="langtoggle" role="group" aria-label="Language">
+      <button class="lng" id="lng-vi" data-lang="vi">VI</button>
+      <button class="lng" id="lng-en" data-lang="en">EN</button>
+    </div>
   </header>
 
   <!-- Pinch / drag / double-tap zoom viewer (mobile + desktop) -->
@@ -188,7 +206,7 @@
     <div id="book"></div>
     <div class="hint" id="hint">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-      Chạm hoặc kéo mép trang để lật
+      <span id="hinttext">Chạm hoặc kéo mép trang để lật</span>
     </div>
   </main>
 
@@ -206,7 +224,7 @@
     <button class="btn" id="fs" aria-label="Toàn màn hình" title="Toàn màn hình">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
     </button>
-    <a class="pill primary" href="assets/AgriBeacon-Brochure.pdf" download>
+    <a class="pill primary" id="download" href="assets/AgriBeacon-Brochure.pdf" download>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       <span class="lbl">Tải PDF</span>
     </a>
@@ -221,23 +239,84 @@
     const $next = document.getElementById('next');
     let pf, loaded = 0, curPage = 1;
 
-    // Build real <img> pages → HTML render mode. The browser paints each <img>
-    // at native/retina resolution (no canvas downscaling), so pages stay crisp.
-    for (let i=1; i<=TOTAL; i++){
-      const div = document.createElement('div');
-      const hard = (i===1 || i===TOTAL);
-      div.className = 'page' + (hard ? ' page--cover' : '');
-      if (hard) div.setAttribute('data-density','hard');
-      const img = document.createElement('img');
-      img.src = `assets/pages/page-${String(i).padStart(2,'0')}.webp`;
-      img.alt = `AgriBeacon brochure — trang ${i}`;
-      img.draggable = false;
-      img.onload = img.onerror = ()=>{ if(++loaded===TOTAL) hideLoader(); };
-      div.appendChild(img);
-      bookEl.appendChild(div);
+    // ---- Bilingual content (VI / EN) ----
+    const I18N = {
+      vi: {
+        title: 'AgriBeacon — Brochure lật trang · AGRI VIETNAM 2026',
+        tag: 'AGRI VIETNAM 2026 · SECC, HCMC',
+        pdf: 'assets/AgriBeacon-Brochure.pdf',
+        download: 'Tải PDF',
+        hint: 'Chạm hoặc kéo mép trang để lật',
+        vhint: 'Chụm 2 ngón hoặc nhấn đúp để phóng to · kéo để di chuyển',
+        alt: n => `AgriBeacon brochure — trang ${n}`,
+        close: 'Đóng', prev: 'Trang trước', next: 'Trang sau',
+        zoom: 'Phóng to để đọc', fs: 'Toàn màn hình',
+      },
+      en: {
+        title: 'AgriBeacon — Interactive Brochure · AGRI VIETNAM 2026',
+        tag: 'AGRI VIETNAM 2026 · SECC, HCMC',
+        pdf: 'assets/AgriBeacon-Brochure-EN.pdf',
+        download: 'Download PDF',
+        hint: 'Tap or drag the page edge to flip',
+        vhint: 'Pinch with two fingers or double-tap to zoom · drag to pan',
+        alt: n => `AgriBeacon brochure — page ${n}`,
+        close: 'Close', prev: 'Previous page', next: 'Next page',
+        zoom: 'Zoom in to read', fs: 'Fullscreen',
+      },
+    };
+    // Resolve initial language: ?lang= → saved → browser → vi
+    function initialLang(){
+      const q = new URLSearchParams(location.search).get('lang');
+      if (q && I18N[q]) return q;
+      try { const s = localStorage.getItem('ab_lang'); if (s && I18N[s]) return s; } catch(_){}
+      return (navigator.language||'').toLowerCase().startsWith('en') ? 'en' : 'vi';
+    }
+    let LANG = initialLang();
+    const pagePath = (lang, n) => `assets/pages/${lang}/page-${String(n).padStart(2,'0')}.webp`;
+
+    function applyLangText(){
+      const t = I18N[LANG];
+      document.documentElement.lang = LANG;
+      document.title = t.title;
+      document.getElementById('tag').textContent = t.tag;
+      const dl = document.getElementById('download');
+      dl.href = t.pdf;
+      dl.querySelector('.lbl').textContent = t.download;
+      document.getElementById('hinttext').textContent = t.hint;
+      document.getElementById('vhint').textContent = t.vhint;
+      document.getElementById('vclose').setAttribute('aria-label', t.close);
+      document.getElementById('vprev').setAttribute('aria-label', t.prev);
+      document.getElementById('vnext').setAttribute('aria-label', t.next);
+      document.getElementById('prev').setAttribute('aria-label', t.prev);
+      document.getElementById('next').setAttribute('aria-label', t.next);
+      const z = document.getElementById('zoom'); z.setAttribute('aria-label', t.zoom); z.title = t.zoom;
+      const f = document.getElementById('fs'); f.setAttribute('aria-label', t.fs); f.title = t.fs;
+      document.getElementById('lng-vi').classList.toggle('active', LANG==='vi');
+      document.getElementById('lng-en').classList.toggle('active', LANG==='en');
     }
 
-    function init(){
+    // Build the flipbook for the current language (called on load + on switch)
+    function buildBook(keepPage){
+      const t = I18N[LANG];
+      if (pf){ try{ pf.destroy(); }catch(_){} pf = null; }
+      bookEl.innerHTML = '';
+      loaded = 0;
+      // Build real <img> pages → HTML render mode. The browser paints each <img>
+      // at native/retina resolution (no canvas downscaling), so pages stay crisp.
+      for (let i=1; i<=TOTAL; i++){
+        const div = document.createElement('div');
+        const hard = (i===1 || i===TOTAL);
+        div.className = 'page' + (hard ? ' page--cover' : '');
+        if (hard) div.setAttribute('data-density','hard');
+        const img = document.createElement('img');
+        img.src = pagePath(LANG, i);
+        img.alt = t.alt(i);
+        img.draggable = false;
+        img.onload = img.onerror = ()=>{ if(++loaded===TOTAL) hideLoader(); };
+        div.appendChild(img);
+        bookEl.appendChild(div);
+      }
+
       // base page ratio = 1400 x 1963 (w x h). Stretch fits this to #book,
       // honouring both block width AND height, and flips to a single page
       // (portrait) once the block is narrower than 2*minWidth.
@@ -269,14 +348,41 @@
       });
 
       document.getElementById('total').textContent = TOTAL;
-      $prev.disabled = true;
+      // restore the page the reader was on (when switching language)
+      const target = Math.min(Math.max(keepPage||1, 1), TOTAL);
+      if (target > 1){ try{ pf.turnToPage(target-1); }catch(_){} }
+      curPage = target;
+      $cur.textContent = curPage;
+      $prev.disabled = curPage <= 1;
+      $next.disabled = curPage >= TOTAL;
     }
-    init();
 
+    applyLangText();
+    buildBook(1);
+
+    // Switch language: keep current page, swap text + image set, rebuild
+    function setLang(lang){
+      if (!I18N[lang] || lang===LANG) return;
+      LANG = lang;
+      try { localStorage.setItem('ab_lang', lang); } catch(_){}
+      const onPage = curPage;
+      showLoader();
+      applyLangText();
+      buildBook(onPage);
+      if (viewer.classList.contains('open')) showInViewer(curPage);
+    }
+    document.getElementById('lng-vi').addEventListener('click', ()=>setLang('vi'));
+    document.getElementById('lng-en').addEventListener('click', ()=>setLang('en'));
+
+    function showLoader(){
+      const l = document.getElementById('loader');
+      l.classList.remove('hide');
+      // fail-safe: never let the loader stick if an image is cached/instant
+      setTimeout(hideLoader, 2500);
+    }
     function hideLoader(){
       const l = document.getElementById('loader');
       l.classList.add('hide');
-      setTimeout(()=>l.remove(), 600);
     }
 
     // Controls
@@ -306,7 +412,7 @@
     const vImg    = document.getElementById('viewerImg');
     const vCount  = document.getElementById('vcount');
     const vHint   = document.getElementById('vhint');
-    const srcOf   = n => `assets/pages/page-${String(n).padStart(2,'0')}.webp`;
+    const srcOf   = n => pagePath(LANG, n);
     let vScale=1, vx=0, vy=0, baseW=0, baseH=0;
 
     function showInViewer(n){
