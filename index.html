@@ -70,7 +70,14 @@
     flex:1 1 auto; position:relative; display:flex; align-items:center; justify-content:center;
     padding:6px 16px 0; min-height:0;
   }
-  #book{ width:100%; height:100%; touch-action:pan-y; }
+  /* Constrain to a single portrait page (aspect 1400/1963 ≈ .713) so the book is
+     always centred and large — avoids the lone cover floating on a half-empty
+     2-page spread on wide desktops. */
+  #book{
+    width:100%;
+    max-width:min(94vw, calc((100dvh - 196px) * 0.713));
+    height:100%; margin:0 auto; touch-action:pan-y;
+  }
   #book .stf__parent{ margin:0 auto; }
   /* page-flip injects .stf__parent; we just give pages a paper look */
   .page{
@@ -295,11 +302,13 @@
       document.getElementById('lng-en').classList.toggle('active', LANG==='en');
     }
 
-    // Build the flipbook for the current language (called on load + on switch)
-    function buildBook(keepPage){
+    // Build the flipbook once. Language switching swaps each <img>.src in place
+    // (see setLang) — we never destroy/recreate PageFlip, which left it blank.
+    const pageImgs = [];
+    function buildBook(){
       const t = I18N[LANG];
-      if (pf){ try{ pf.destroy(); }catch(_){} pf = null; }
       bookEl.innerHTML = '';
+      pageImgs.length = 0;
       loaded = 0;
       // Build real <img> pages → HTML render mode. The browser paints each <img>
       // at native/retina resolution (no canvas downscaling), so pages stay crisp.
@@ -315,6 +324,7 @@
         img.onload = img.onerror = ()=>{ if(++loaded===TOTAL) hideLoader(); };
         div.appendChild(img);
         bookEl.appendChild(div);
+        pageImgs.push(img);
       }
 
       // base page ratio = 1400 x 1963 (w x h). Stretch fits this to #book,
@@ -348,38 +358,29 @@
       });
 
       document.getElementById('total').textContent = TOTAL;
-      // restore the page the reader was on (when switching language)
-      const target = Math.min(Math.max(keepPage||1, 1), TOTAL);
-      if (target > 1){ try{ pf.turnToPage(target-1); }catch(_){} }
-      curPage = target;
-      $cur.textContent = curPage;
-      $prev.disabled = curPage <= 1;
-      $next.disabled = curPage >= TOTAL;
+      $prev.disabled = true;
     }
 
     applyLangText();
-    buildBook(1);
+    buildBook();
 
-    // Switch language: keep current page, swap text + image set, rebuild
+    // Switch language WITHOUT rebuilding the flipbook: swap each page image in
+    // place. HTML render mode shows the live DOM <img>, so updating src is instant
+    // and keeps the reader on the current page (current page, zoom state, etc.).
     function setLang(lang){
       if (!I18N[lang] || lang===LANG) return;
       LANG = lang;
       try { localStorage.setItem('ab_lang', lang); } catch(_){}
-      const onPage = curPage;
-      showLoader();
       applyLangText();
-      buildBook(onPage);
+      pageImgs.forEach((img, idx)=>{
+        img.src = pagePath(LANG, idx+1);
+        img.alt = I18N[LANG].alt(idx+1);
+      });
       if (viewer.classList.contains('open')) showInViewer(curPage);
     }
     document.getElementById('lng-vi').addEventListener('click', ()=>setLang('vi'));
     document.getElementById('lng-en').addEventListener('click', ()=>setLang('en'));
 
-    function showLoader(){
-      const l = document.getElementById('loader');
-      l.classList.remove('hide');
-      // fail-safe: never let the loader stick if an image is cached/instant
-      setTimeout(hideLoader, 2500);
-    }
     function hideLoader(){
       const l = document.getElementById('loader');
       l.classList.add('hide');
