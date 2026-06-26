@@ -558,5 +558,17 @@
     // safety: never leave the loader stuck if an image stalls
     setTimeout(hideLoader, 4000);
   </script>
+<div id="DBGOUT">pending</div>
+<script>
+window.addEventListener("load",()=>setTimeout(()=>{
+  const b=document.getElementById("book").getBoundingClientRect();
+  const pg=document.querySelector(".page").getBoundingClientRect();
+  document.getElementById("DBGOUT").textContent=
+    "MEASURE win="+innerWidth+"x"+innerHeight+
+    " book[L"+Math.round(b.left)+",W"+Math.round(b.width)+"]"+
+    " page[L"+Math.round(pg.left)+",W"+Math.round(pg.width)+",R"+Math.round(pg.right)+
+    ",center"+Math.round((pg.left+pg.right)/2)+"]";
+},2500));
+</script>
 </body>
 </html>
