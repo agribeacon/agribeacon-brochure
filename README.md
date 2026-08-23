@@ -81,3 +81,7 @@ i=0; for f in /tmp/q-*.png; do i=$((i+1)); cwebp -q 82 "$f" -o assets/pages/en/p
 
 ---
 © 2026 AgriBeacon — Precise Signals. Smarter Sensing. Sustainable Growth.
+
+## Workspace agribeacon-ws
+
+Repo này là một phần của workspace [agribeacon-ws](https://github.com/agribeacon/agribeacon-ws): clone repo đó làm thư mục cha rồi chạy `scripts/clone-all.sh` để kéo toàn bộ repo của công ty về đúng cấu trúc. Quy ước chung cho người + AI agent (Claude Code, Codex, ...) nằm ở `AGENTS.md`/`CLAUDE.md` của thư mục cha; hệ sutagrow đọc thêm `sutagrow-api/AGENTS.md`.
